@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zithande Trade Hub - E-Commerce Home Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/profile.css">
+    </head>
+
+    <body>
+        
+        <!--Header-->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        ZithandeTradeHub
+                    </a>
+
+                    <ul class="navLinks">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <div class="navIcons">
+                        <a href="#" id="wishlistBtn">
+                            <i class="fas fa-heart"></i>
+                            <span class="wishlistCount">0</span>
+                        </a>
+                        <a href="#" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cartCount">0</span>
+                        </a>
+                        <a href="#" id="profileLink"><i class="fas fa-user"></i></a>
+                        <div class="hamburger">
+                          <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="breadCrumb">
+            <div class="container">
+                <ul class="breadCrumbList">
+                    <li class="breadCrumbItem"><a href="home.html">Home</a></li>
+                    <li class="breadCrumbItem active">My Account</li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="account">
+            <div class="container">
+                <h1 class="sectionTitle">My Account</h1>
+
+                <div class="accountWrapper">
+                    <aside class="accountSidebar">
+                        <div class="accountUser">
+                            <div class="userAvatar" style="cursor: pointer;">
+                                <img id="avatarImg" src="/images/userProfilePfp.png" alt="User Avatar" width="100" height="100">
+                                <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                              </div>
+                            <div class="userInfo">
+                                <h3>Sarah Johnson</h3>
+                                <p>Member since 2021</p>
+                            </div>
+                        </div>
+
+                        <ul class="accountMenu">
+                            <li class="active"><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                            <li><a href="#orders"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+                            <li><a href="#addresses"><i class="fas fa-address-book"></i> Addresses</a></li>
+                            <li><a href="#account"><i class="fas fa-user"></i> Account Details</a></li>
+                            <li><a href="#wishlist"><i class="fas fa-heart"></i> Wishlist</a></li>
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </ul>
+                    </aside>
+
+                    <main class="accountContent">
+                        <div id="dashboard" class="accountTab active">
+                            <h2>Dashboard</h2>
+                            <p id="dashboardGreeting">Hello <strong>Nevin Tom</strong> (not <strong>Nevin Tom</strong>? <a href="#" id="profileLink">Log out</a>)</p>
+                            <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
+
+                            <div class="dashboardCards">
+                                <div class="dashboardCard">
+                                    <div class="cardIcon">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </div>
+                                    <div class="cardContent">
+                                        <h3>Orders</h3>
+                                        <p>View your order history and track shipments</p>
+                                        <a href="#orders" class="btn btnOutline">View Orders</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="dashboardCard">
+                                    <div class="cardIcon">
+                                        <i class="fas fa-address-book"></i>
+                                    </div>
+                                    <div class="cardContent">
+                                        <h3>Addresses</h3>
+                                        <p>Manage your shipping and billing addresses</p>
+                                        <a href="#addresses" class="btn btnOutline">Manage Addresses</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="dashboardCard">
+                                    <div class="cardIcon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="cardContent">
+                                        <h3>Account Details</h3>
+                                        <p>Update your name, email, and password</p>
+                                        <a href="#account" class="btn btnOutline">Edit Account</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="dashboardCard">
+                                    <div class="cardIcon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div class="cardContent">
+                                        <h3>Wishlist</h3>
+                                        <p>View and manage your saved items</p>
+                                        <a href="#wishlist" class="btn btnOutline">View Wishlist</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="orders" class="accountTab">
+                            <h2>Orders</h2>
+                            <p>View your order history and track shipments.</p>
+
+                            <table class="ordersTable">
+                                <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#1001</td>
+                                        <td>October 15, 2023</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td>$334.77</td>
+                                        <td><a href="#" class="viewOrder">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#982</td>
+                                        <td>September 28, 2023</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td>$199.99</td>
+                                        <td><a href="#" class="viewOrder">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#956</td>
+                                        <td>September 12, 2023</td>
+                                        <td><span class="status cancelled">Cancelled</span></td>
+                                        <td>$89.99</td>
+                                        <td><a href="#" class="viewOrder">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#921</td>
+                                        <td>August 30, 2023</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td>$149.99</td>
+                                        <td><a href="#" class="viewOrder">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#899</td>
+                                        <td>August 5, 2023</td>
+                                        <td><span class="status completed">Completed</span></td>
+                                        <td>$79.99</td>
+                                        <td><a href="#" class="viewOrder">View</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="addresses" class="accountTab">
+                            <h2>Addresses</h2>
+                            <p> The following addresses will be ussed on the checkout page by defualt.</p>
+
+                            <div class="addressCards">
+                                <div class="addressCard">
+                                    <div class="addressHeader">
+                                        <h3>Billing Address</h3>
+                                        <a href="#" class="editAddress">Edit</a>
+                                    </div>
+                                    <div class="addressContent">
+                                        <p>Nevin Tom</p>
+                                        <p>123 Main Street</p>
+                                        <p>Apt 48</p>
+                                        <p>New York, My 10010</p>
+                                        <p>United Stated</p>
+                                        <p>Phone: (555) 123-4567</p>
+                                    </div>
+                                </div>
+
+                                <div class="addressCard">
+                                    <div class="addressHeader">
+                                        <h3>Shipping Address</h3>
+                                        <a href="#" class="editAddress">Edit</a>
+                                    </div>
+                                    <div class="addressContent">
+                                        <p>Nevin Tom</p>
+                                        <p>123 Main Street</p>
+                                        <p>Apt 48</p>
+                                        <p>New York, My 10010</p>
+                                        <p>United Stated</p>
+                                        <p>Phone: (555) 123-4567</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="account" class="accountTab">
+                            <h2>Account Details</h2>
+
+                            <form class="accountForm">
+                                <div class="formRow">
+                                    <div class="formGroup">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" value="Nevin" required>
+                                    </div>
+                                    <div class="formGroup">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" value="Tom" required>
+                                    </div>
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="displayName">Display Name</label>
+                                    <input type="text" id="displayName" value="Nevvyboo" required>
+                                    <p class="formNote">This will be how your name will be displayed in the account section and in reviews</p>
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" value="sarah.johnson@example.com" required>
+                                </div>
+
+                                <h3>Password Change</h3>
+
+                                <div class="formGroup">
+                                    <label for="currentPass">Current Password (leave blank to leave unchanged)</label>
+                                    <input type="password" id="currentPass">
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="newPass">New Password (leave blank to leave unchanged)</label>
+                                    <input type="password" id="newPass">
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="confirmPass">Confirm New Password</label>
+                                    <input type="password" id="confirmPass">
+                                </div>
+
+                                <button type="submit" class="btn btnPrimary">Save Changes</button>
+                            </form>
+                        </div>
+
+                        <div id="wishlist" class="accountTab">
+                            <h2>Wishlist</h2>
+                            
+                            <div class="wishlistItems">
+                                
+                            </div>
+                        </div>
+
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footerContent">
+                    <div class="footerColumn">
+                        <h3>Zithande Trade Hub</h3>
+                        <p>Premium e-commerce platform offering high-quality products with exceptional customer service.</p>
+                        <div class="socialLinks">
+                            <a href="https://www.facebook.com/" class="socialLink"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/" class="socialLink"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/" class="socialLink"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/" class="socialLink"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Quick Links</h3>
+                        <ul class="footerLinks">
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Customer Service</h3>
+                        <ul class="footerLinks">
+                            <li><a href="#" id="profileLink">My Account</a></li>
+                            <li><a href="tracking.html">Order Tracking</a></li>
+                            <li><a href="returns.html">Returns & Exchanges</a></li>
+                            <li><a href="contact.html#faq-section">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Contact Us</h3>
+                        <div class="footerContact">
+                            <p><i class="fas fa-map-marker-alt"></i> 493 Opstal Street, Die Wilgers, Pretoria 0184</p>
+                            <p><i class="fas fa-phone"></i> 076 060 1488</p>
+                            <p><i class="fas fa-envelope"></i> support@zithandetradehub.com</p>
+                            <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 4:30PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footerBottom">
+                    <p>&copy; 2025 Zithande Trade Hub. All Rights Reserved. | <a href="info.html#privacy">Privacy Policy</a> | <a href="info.html#terms">Terms of Service</a></p>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- Functionality -->
+        <script src="/js/profile.js"></script>
+    </body>
+</html>

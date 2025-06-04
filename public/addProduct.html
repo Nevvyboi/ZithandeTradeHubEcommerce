@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zithande Trade Hub - E-Commerce Information Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/addProduct.css">
+    </head>
+
+    <body>
+        <!--Header-->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        ZithandeTradeHub
+                    </a>
+                    <a href="seller.html" class="backToProfile"><i class="fas fa-arrow-left"></i> Back to Profile</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="products">
+            <div class="container">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle">Add New Product</h2>
+                </div>
+
+                <div class="formContainer">
+                  <form id="productForm" action="/upload-product" method="POST" enctype="multipart/form-data">
+                        <div class="formGrid">
+                          
+                          <div class="formGroup">
+                            <label for="productName" class="formLabel">Product Name</label>
+                            <input type="text" id="productName" name="name" class="formControl" required>
+                          </div>
+                      
+                          <div class="formGroup">
+                            <label for="productCategory" class="formLabel">Category</label>
+                            <select id="productCategory" name="categoryId" class="formControl" required>
+                              <option value="">Select category</option>
+                              <option value="1">Jewelry</option>
+                              <option value="2">Clothing</option>
+                              <option value="3">Home Decor</option>
+                              <option value="4">Art</option>
+                              <option value="5">Electronics</option>
+                            </select>
+                          </div>
+                      
+                          <div class="formGroup">
+                            <label for="productPrice" class="formLabel">Price (R)</label>
+                            <input type="number" id="productPrice" name="price" class="formControl" placeholder="0.00" min="0" step="0.01" required>
+                          </div>
+                      
+                          <div class="formGroup">
+                            <label for="productStock" class="formLabel">Inventory</label>
+                            <input type="number" id="productStock" name="stock" class="formControl" placeholder="0" min="0" required>
+                          </div>
+                      
+                          <div class="formGroup fullWidth">
+                            <label class="formLabel">Product Image</label>
+                            <div class="imageUpload" id="imageUpload">
+                              <input type="file" name="productImage" id="fileInput" accept="image/*" required>
+                              <div class="imageUploadIcon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                              </div>
+                              <div class="imageUploadText">Drag & drop image here</div>
+                            </div>
+                            <div class="previewGrid" id="imagePreview"></div>
+                          </div>
+                      
+                          <div class="formGroup fullWidth">
+                            <label for="productDescription" class="formLabel">Description</label>
+                            <textarea id="productDescription" name="description" class="formControl" required></textarea>
+                          </div>
+                      
+                          <input type="hidden" name="sellerId" id="sellerId" value="">
+                      
+                        </div>
+                      
+                        <div class="formFooter">
+                          <button type="button" class="btn btnOutline" onclick="window.location.href='seller.html'">Cancel</button>
+                          <button type="submit" id="submitBtn" class="btn btnPrimary">Publish Product</button>
+                        </div>
+                      </form>
+                      
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Functionality -->
+        <script src="/js/addProduct.js"></script>
+    </body>
+</html>

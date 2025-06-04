@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zithande Trade Hub - E-Commerce Contact Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/contact.css">
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        ZithandeTradeHub
+                    </a>
+                    
+                    <ul class="navLinks">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <div class="navIcons">
+                        <a href="#" id="wishlistBtn">
+                            <i class="fas fa-heart"></i>
+                            <span class="wishlistCount">0</span>
+                        </a>
+                        <a href="#"  id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cartCount">0</span>
+                        </a>
+                        <a href="#" id="profileLink"><i class="fas fa-user"></i></a>
+                        <div class="hamburger">
+                          <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+
+                    <!-- Empty Wishlist Popup -->
+                    <div id="emptyWishlistPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-heart-broken"></i>
+                            </div>
+                            <h3>Oops, Empty Wishlist!</h3>
+                            <p>You haven’t saved any items yet. Start exploring!</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn">Browse Products</button>
+                        </div>
+                    </div>
+
+                    <!-- Empty Cart Popup -->
+                    <div id="emptyCartPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-shopping-basket"></i>
+                            </div>
+                            <h3>Your Cart is Empty!</h3>
+                            <p>Looks like you haven’t added anything to your cart yet.</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn">Shop Now</button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <section class="pageHeader">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you! Reach out with any questions, feedback, or inquiries.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <div class="container">
+                <div class="contactWrapper">
+                    <!-- Contact Info -->
+                    <div class="contactInfo">
+                        <h2 class="sectionTitle">Get In Touch</h2>
+                        <p>Have questions about our products or need assistance with your order? Our friendly customer service team is here to help.</p>
+                        
+                        <div class="infoItem">
+                            <div class="infoIcon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="infoContent">
+                                <h3>Address</h3>
+                                <p>493 Opstal Street, Die Wilgers, Pretoria 0184, Guateng, South Africa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="infoItem">
+                            <div class="infoIcon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="infoContent">
+                                <h3>Phone</h3>
+                                <p>076 060 1488</p>
+                                <p>Mon-Fri: 9AM - 4:30PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="infoItem">
+                            <div class="infoIcon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="infoContent">
+                                <h3>Email</h3>
+                                <p>support@zithandetradehub.com</p>
+                                <p>inquiries@zithandetradehub.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="socialLinks">
+                            <h3>Follow Us</h3>
+                            <div class="socialIcons">
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.pinterest.com/"><i class="fab fa-pinterest"></i></a>
+                                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="contactForm">
+                        <h2 class="sectionTitle">Send Us a Message</h2>
+                        <form id="contactForm">
+                            <div class="formRow">
+                                <div class="formGroup">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" required>
+                                </div>
+                                <div class="formGroup">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="formGroup">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" required>
+                            </div>
+                            
+                            <div class="formGroup">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" rows="6" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="messageSubmittedPopup" class="popupOverlay">
+                    <div class="popupCard">
+                        <div class="popupIcon success">
+                            <svg viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" />
+                            </svg>
+                        </div>
+                        <h3>Message Sent!</h3>
+                        <p>We’ve received your message and will respond within 24 hours.</p>
+                        <button class="popupCloseBtn">&times;</button>
+                        <button class="popupActionBtn" id="returnToHome">Continue Browsing</button>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="contactMap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.427811051445!2d28.313543110873987!3d-25.7564292457928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e955e33e316bb9b%3A0xa627bf7e52ed7920!2s493%20Opstal%20St%2C%20Die%20Wilgers%2C%20Pretoria%2C%200184!5e0!3m2!1sen!2sza!4v1746427547034!5m2!1sen!2sz" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <!-- FAQs -->
+                <div class="faqSection" id="faqSectionId">
+                    <h2 class="sectionTitle">Frequently Asked Questions</h2>
+                    <div class="faqContainer">
+                        <div class="faqItem">
+                            <div class="faqQuestion">
+                                <h3>What are your shipping options and costs?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faqAnswer">
+                                <p>We offer several shipping options to meet your needs. Standard shipping is free for all orders over R500. For orders under R500, standard shipping is $4.99. We also offer expedited shipping options at checkout for an additional fee. Delivery times vary based on your location and the shipping method selected.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faqItem">
+                            <div class="faqQuestion">
+                                <h3>How can I track my order?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faqAnswer">
+                                <p>Once your order has shipped, you'll receive a confirmation email with a tracking number and a link to track your package. You can also track your order by logging into your account and viewing your order history. If you checked out as a guest, you can use the order lookup tool on our website.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faqItem">
+                            <div class="faqQuestion">
+                                <h3>What is your return policy?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faqAnswer">
+                                <p>We offer a 30-day return policy for most items. Items must be unused, in their original packaging, and with all tags attached. Some exclusions apply (e.g., final sale items). To initiate a return, please visit our Returns Center in your account or contact our customer service team for assistance.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faqItem">
+                            <div class="faqQuestion">
+                                <h3>Do you offer international shipping?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faqAnswer">
+                                <p>Yes, we ship to over 50 countries worldwide. International shipping rates and delivery times vary by destination. All international orders may be subject to customs fees, import duties, and taxes, which are the responsibility of the recipient. Please check with your local customs office for more information.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faqItem">
+                            <div class="faqQuestion">
+                                <h3>How can I contact customer service?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faqAnswer">
+                                <p>Our customer service team is available 24/7 to assist you. You can reach us by phone at 076 060 1488, by email at support@zithandetradehub.com, or via live chat on our website during business hours. We typically respond to emails within 24 hours.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footerContent">
+                    <div class="footerColumn">
+                        <h3>Zithande Trade Hub</h3>
+                        <p>Premium e-commerce platform offering high-quality products with exceptional customer service.</p>
+                        <div class="socialLinks">
+                            <a href="https://www.facebook.com/" class="socialLink"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/" class="socialLink"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/" class="socialLink"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/" class="socialLink"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Quick Links</h3>
+                        <ul class="footerLinks">
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Customer Service</h3>
+                        <ul class="footerLinks">
+                            <li><a href="#" id="profileLink">My Account</a></li>
+                            <li><a href="tracking.html">Order Tracking</a></li>
+                            <li><a href="#" id="footerWishlistLink">Wishlist</a></li>
+                            <li><a href="returns.html">Returns & Exchanges</a></li>
+                            <li><a href="contact.html#faq-section">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Contact Us</h3>
+                        <div class="footerContact">
+                            <p><i class="fas fa-map-marker-alt"></i> 493 Opstal Street, Die Wilgers, Pretoria 0184</p>
+                            <p><i class="fas fa-phone"></i> 076 060 1488</p>
+                            <p><i class="fas fa-envelope"></i> support@zithandetradehub.com</p>
+                            <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 4:30PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footerBottom">
+                    <p>&copy; 2025 Zithande Trade Hub. All Rights Reserved. | <a href="info.html#privacy">Privacy Policy</a> | <a href="info.html#terms">Terms of Service</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!--Functionality-->
+        <script src="/js/contact.js"></script>
+    </body>
+</html>

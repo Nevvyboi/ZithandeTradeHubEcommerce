@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zithande Trade Hub - E-Commerce About Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/about.css">
+    </head>
+
+    <body>
+        <!--Header-->
+        <header class="header"> 
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        ZithandeTradeHub
+                    </a>
+
+                    <ul class="navLinks">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <div class="navIcons">
+                        <a href="#" id="wishlistBtn">
+                            <i class="fas fa-heart"></i>
+                            <span class="wishlistCount">0</span>
+                        </a>
+                        <a href="#" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cartCount">0</span>
+                        </a>
+                        <a href="#" id="profileLink"><i class="fas fa-user"></i></a>
+                        <div class="hamburger">
+                          <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+
+                    <!-- Empty Wishlist Popup -->
+                    <div id="emptyWishlistPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-heart-broken"></i>
+                            </div>
+                            <h3>Oops, Empty Wishlist!</h3>
+                            <p>You haven’t saved any items yet. Start exploring!</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn">Browse Products</button>
+                        </div>
+                    </div>
+
+                    <!-- Empty Cart Popup -->
+                    <div id="emptyCartPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-shopping-basket"></i>
+                            </div>
+                            <h3>Your Cart is Empty!</h3>
+                            <p>Looks like you haven’t added anything to your cart yet.</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn">Shop Now</button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <section class="pageHeader">
+            <div class="container">
+                <h1>About ZithandeTradeHub</h1>
+                <p>Discover our story and what makes us the premier destination for quality products and exceptional service.</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <div class="container">
+                <div class="aboutContent">
+                    <div class="aboutText">
+                        <h2 class="sectionTitle">Our Story</h2>
+                        <p>Founded in 2025, ZithandeTradeHub began as a small startup with a big vision: to create an e-commerce platform that prioritizes quality, customer experience, and innovation. What started as a humble online store has grown into a trusted destination for thousands of customers worldwide.</p>
+                        <p>Our journey has been guided by a simple philosophy - offer carefully curated products that combine functionality, style, and value. We meticulously vet every item in our collection to ensure it meets our high standards before it reaches your doorstep.</p>
+                        <p>Today, ZithandeTradeHub serves customers across 50+ countries, but we remain committed to the personal touch that defined our early days. We're not just selling products; we're building relationships and helping customers discover items that enhance their lives.</p>
+                    </div>
+                    <div class="aboutImage">
+                        <img src="/images/aboutImageBackground.avif" alt="Our Team">
+                    </div>
+                </div>
+                
+                <!-- Our Values -->
+                <div class="ourValues">
+                    <h2 class="sectionTitle">Our Values</h2>
+                    <div class="valuesGrid">
+                        <div class="valueCard">
+                            <div class="valueIcon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3>Quality First</h3>
+                            <p>We source only the highest quality products that stand the test of time and deliver exceptional performance.</p>
+                        </div>
+                        
+                        <div class="valueCard">
+                            <div class="valueIcon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Customer Focus</h3>
+                            <p>Your satisfaction is our priority. We go above and beyond to ensure every shopping experience is exceptional.</p>
+                        </div>
+                        
+                        <div class="valueCard">
+                            <div class="valueIcon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3>Innovation</h3>
+                            <p>We continuously seek out innovative products and solutions to stay ahead of the curve.</p>
+                        </div>
+                        
+                        <div class="valueCard">
+                            <div class="valueIcon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Sustainability</h3>
+                            <p>We're committed to eco-friendly practices and offering sustainable product options.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Section -->
+                <div class="ourTeam">
+                    <h2 class="sectionTitle">Meet Our Team</h2>
+                    <div class="teamGrid">
+                        <div class="teamMember">
+                            <div class="memberImage">
+                                <img src="/images/nevinTom.jpg" alt="Nevin Tom">
+                            </div>
+                            <h3>Nevin Tom</h3>
+                            <p class="position">CEO & Founder</p>
+                            <p class="bio">With over 21 years in e-commerce, Nevin founded ZithandeTradeHub with a vision to redefine online shopping.</p>
+                            <div class="socialLinksAbout">
+                                <a href="https://www.linkedin.com/in/nevtom/"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="teamMember">
+                            <div class="memberImage">
+                                <img src="/images/donellOageng.jpg" alt="Michael Chen">
+                            </div>
+                            <h3>Donell Oageng</h3>
+                            <p class="position">Head of Operations</p>
+                            <p class="bio">Donell ensures our logistics and supply chain run smoothly to deliver your orders on time.</p>
+                            <div class="socialLinksAbout">
+                                <a href="https://www.linkedin.com/in/donell-oageng-945106231/"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats -->
+                <div class="statsSection">
+                    <div class="statItem">
+                        <div class="statNumber">10+</div>
+                        <div class="statLabel">Years in Business</div>
+                    </div>
+                    <div class="statItem">
+                        <div class="statNumber">21K+</div>
+                        <div class="statLabel">Happy Customers</div>
+                    </div>
+                    <div class="statItem">
+                        <div class="statNumber">1K+</div>
+                        <div class="statLabel">Quality Products</div>
+                    </div>
+                    <div class="statItem">
+                        <div class="statNumber">24/7</div>
+                        <div class="statLabel">Customer Support</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footerContent">
+                    <div class="footerColumn">
+                        <h3>Zithande Trade Hub</h3>
+                        <p>Premium e-commerce platform offering high-quality products with exceptional customer service.</p>
+                        <div class="socialLinks">
+                            <a href="https://www.facebook.com/" class="socialLink"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/" class="socialLink"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/" class="socialLink"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/" class="socialLink"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Quick Links</h3>
+                        <ul class="footerLinks">
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Customer Service</h3>
+                        <ul class="footerLinks">
+                            <li><a href="#" id="profileLink">My Account</a></li>
+                            <li><a href="tracking.html">Order Tracking</a></li>
+                            <li><a href="#" id="footerWishlistLink">Wishlist</a></li>
+                            <li><a href="returns.html">Returns & Exchanges</a></li>
+                            <li><a href="contact.html#faq-section">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Contact Us</h3>
+                        <div class="footerContact">
+                            <p><i class="fas fa-map-marker-alt"></i> 493 Opstal Street, Die Wilgers, Pretoria 0184</p>
+                            <p><i class="fas fa-phone"></i> 076 060 1488</p>
+                            <p><i class="fas fa-envelope"></i> support@zithandetradehub.com</p>
+                            <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 4:30PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footerBottom">
+                    <p>&copy; 2025 Zithande Trade Hub. All Rights Reserved. | <a href="info.html#privacy">Privacy Policy</a> | <a href="info.html#terms">Terms of Service</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!--Functionality-->
+        <script src="/js/about.js"></script>
+    </body>
+</html>
