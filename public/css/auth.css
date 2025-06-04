@@ -1,0 +1,401 @@
+:root {
+    --primary: #6b5be6;
+    --primary-dark: #5649c0;
+    --secondary: #00cec9;
+    --dark: #2d3436;
+    --light: #f5f6fa;
+    --success: #00b894;
+    --danger: #d63031;
+    --warning: #fdcb6e;
+    --info: #0984e3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.header--hidden {
+    transform: translateY(-100%);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+}
+
+.logo i {
+    margin-right: 10px;
+    font-size: 2rem;
+}
+
+.backToShop {
+    position: relative;
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+}
+  
+.backToShop::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+  
+.backToShop:hover {
+    color: var(--primary);
+}
+  
+.backToShop:hover::after {
+    width: 100%;
+}
+
+.backToShop i {
+    margin-right: 5px;
+}
+
+/* Authentication Form*/
+.authContainer {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    overflow: hidden;
+    margin: 100px auto 0; 
+}
+
+.authHeader {
+    padding: 30px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.9), rgba(0, 206, 201, 0.8));
+    color: white;
+}
+
+.authHeader h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.authToggle {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 5px;
+    margin-top: 15px;
+}
+
+.authToggle button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.authToggle button.active {
+    background-color: white;
+    color: var(--primary);
+}
+
+.authForms {
+    padding: 30px;
+}
+
+.authForm {
+    display: none;
+}
+
+.authForm.active {
+    display: block;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.inputGroup i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.inputGroup .togglePassword {
+    left: auto;
+    right: 15px;
+    cursor: pointer;
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.inputGroup input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-dark);
+    cursor: pointer;
+}
+
+.options a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+.authBtn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.9), rgba(0, 206, 201, 0.8));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.authBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.accountType {
+    margin: 25px 0;
+}
+
+.accountType h3 {
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+    font-size: 16px;
+}
+
+.typeOptions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.typeOption {
+    flex: 1;
+}
+
+.typeOption input {
+    display: none;
+}
+
+.typeOption .optionContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.typeOption .optionContent i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: gray;
+}
+
+.typeOption .optionContent span {
+    font-size: 14px;
+    color: var(--primary-dark);
+}
+
+.typeOption input:checked + .optionContent {
+    border-color: var(--primary);
+    background-color: rgba(67, 97, 238, 0.05);
+}
+
+.typeOption input:checked + .optionContent i {
+    color: var(--primary);
+}
+
+.terms {
+    font-size: 12px;
+    color: gray;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.terms a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popupOverlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popupContainer {
+    background: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 300px;
+    max-width: 90%;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.popupOverlay.active .popupContainer {
+    transform: translateY(0);
+}
+
+.popupContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+}
+
+#popupCloseBtn {
+    margin-top: 10px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+    width: auto;
+}
+
+#popupCloseBtn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.popupContainer {
+    animation: fadeIn 0.3s ease-out;
+}
+ 
+
+@media (max-width: 480px) {
+    .authHeader {
+        padding: 20px;
+    }
+    
+    .authForms {
+        padding: 20px;
+    }
+    
+    .typeOptions {
+        flex-direction: column;
+    }
+}

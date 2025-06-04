@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zithande Trade Hub - E-Commerce Authenticatin Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/auth.css">
+    </head>
+
+    <body>
+        <!--Header-->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        Join or Log In to ZithandeTradeHub
+                    </a>
+                    <a href="home.html" class="backToShop"><i class="fas fa-arrow-left"></i> Back to Shop</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="authContainer">
+            <div class="authHeader">
+                <div class="authToggle">
+                    <button class="active" id="loginBtn">Sign In</button>
+                    <button id="registerBtn">Sign Up</button>
+                </div>
+            </div>
+
+            <div class="authForms">
+                <form id="loginForm" class="authForm active" method="post">
+                    <div class="inputGroup">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="inputGroup">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" name="password" placeholder="Password" required>
+                        <i class="fas fa-eye togglePassword"></i>
+                    </div>
+                    <div class="options">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="authBtn">Sign In</button>
+                </form>
+
+                <form id="registerForm" class="authForm" method="post">
+                    <div class="inputGroup">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Full Name" id="registerFullName" required>
+                    </div>
+                    <div class="inputGroup">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email Address" id="registerEmail" required>
+                    </div>
+                    <div class="inputGroup">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="registerPassword" required>
+                        <i class="fas fa-eye togglePassword"></i>
+                    </div>
+                    <div class="inputGroup">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Confirm Password" id="registerConfirmPassword" required>
+                        <i class="fas fa-eye togglePassword"></i>
+                    </div>
+                    
+                    <div class="accountType">
+                        <h3>I want to:</h3>
+                        <div class="typeOptions">
+                            <label class="typeOption">
+                                <input type="radio" name="accountType" value="buyer" checked>
+                                <div class="optionContent">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span>Buy Products</span>
+                                </div>
+                            </label>
+                            <label class="typeOption">
+                                <input type="radio" name="accountType" value="seller">
+                                <div class="optionContent">
+                                    <i class="fas fa-store"></i>
+                                    <span>Sell Products</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="authBtn">Create Account</button>
+                    <p class="terms">By signing up, you agree to our <a href="info.html#privacy">Privacy Policy</a> and <a href="info.html#terms">Terms of Service</a></p>
+                </form>
+            </div>
+        </div>
+
+        <script src="/js/auth.js"></script>
+    </body>
+</html>

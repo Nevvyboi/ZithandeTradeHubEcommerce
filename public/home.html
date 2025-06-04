@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zithande Trade Hub - E-Commerce Home Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+
+    <body>
+
+        <!--Header-->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        ZithandeTradeHub
+                    </a>
+
+                    <ul class="navLinks">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <div class="navIcons">
+                        <a href="#" id="wishlistBtn">
+                            <i class="fas fa-heart"></i>
+                            <span class="wishlistCount">0</span>
+                        </a>
+                        <a href="#" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cartCount">0</span>
+                        </a>
+                        <a href="#" id="profileLink"><i class="fas fa-user"></i></a>
+                        <div class="hamburger">
+                          <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+
+                    <!-- Empty Wishlist Popup -->
+                    <div id="emptyWishlistPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-heart-broken"></i>
+                            </div>
+                            <h3>Oops, Empty Wishlist!</h3>
+                            <p>You haven’t saved any items yet. Start exploring!</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn">Browse Products</button>
+                        </div>
+                    </div>
+
+                    <!-- Empty Cart Popup -->
+                    <div id="emptyCartPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-shopping-basket"></i>
+                            </div>
+                            <h3>Your Cart is Empty!</h3>
+                            <p>Looks like you haven’t added anything to your cart yet.</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn">Shop Now</button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="container">
+                <div class="heroContent">
+                    <h1>Premium Products For Your Everyday Life</h1>
+                    <p>Discover our curated collection of high-quality products that combine style, functionality, and innovation.</p>
+                    <div class="heroBtns">
+                        <a href="#" class="btn btnPrimary">Shop Now</a>
+                        <a href="#" class="btn btnOutline">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Products -->
+        <section class="featured">
+            <div class="container">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle">Featured Products</h2>
+                    <a href="shop.html" class="viewAll">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="productsGrid" id="featuredGrid">
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="categories">
+            <div class="container">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle">Shop by Category</h2>
+                    <a href="shop.html" class="viewAll">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="categoriesGrid">
+                    <a href="#" class="categoryCard">
+                        <div class="categoryIcon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="categoryTitle">Electronics</h3>
+                        <p class="categoryCount">125 Products</p>
+                    </a>
+
+                    <a href="#" class="categoryCard">
+                        <div class="categoryIcon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3 class="categoryTitle">Fashion</h3>
+                        <p class="categoryCount">89 Products</p>
+                    </a>
+                    
+                    <a href="#" class="categoryCard">
+                        <div class="categoryIcon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="categoryTitle">Home & Garden</h3>
+                        <p class="categoryCount">72 Products</p>
+                    </a>
+                    
+                    <a href="#" class="categoryCard">
+                        <div class="categoryIcon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="categoryTitle">Gaming</h3>
+                        <p class="categoryCount">43 Products</p>
+                    </a>
+                    
+                    <a href="#" class="categoryCard">
+                        <div class="categoryIcon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="categoryTitle">Health & Fitness</h3>
+                        <p class="categoryCount">56 Products</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="sectionTitle">What Our Customers Say</h2>
+                
+                <div class="testimonialsContainer">
+                    
+                    <div class="testimonialCard">
+                        <p class="testimonialText">
+                            The quality of products at Zithande Trade Hub is unmatched. I've been a loyal customer for years and never been disappointed.
+                        </p>
+                        <div class="testimonialAuthor">
+                            <div class="authorImg">
+                                <img src="/images/testimonial1.jpg" alt="Sarah Edwards">
+                            </div>
+                            <div class="authorInfo">
+                                <h4>Sarah Edwards</h4>
+                                <p>Verified Buyer</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonialCard">
+                        <p class="testimonialText">
+                            Fast shipping and excellent customer service. The headphones I ordered sound amazing and were packaged with care.
+                        </p>
+                        <div class="testimonialAuthor">
+                            <div class="authorImg">
+                                <img src="/images/testimonial2.jpg" alt="Michael Allen">
+                            </div>
+                            <div class="authorInfo">
+                                <h4>Michael Allen</h4>
+                                <p>Verified Buyer</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonialCard">
+                        <p class="testimonialText">
+                            I love the variety of products available. Found exactly what I was looking for at a great price. Will shop here again!
+                        </p>
+                        <div class="testimonialAuthor">
+                            <div class="authorImg">
+                                <img src="/images/testimonial3.jpg" alt="Emma Rodriguez">
+                            </div>
+                            <div class="authorInfo">
+                                <h4>Emma Charles</h4>
+                                <p>Verified Buyer</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section (existing) -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates on new products, exclusive offers, and special discounts straight to your inbox.</p>
+                <form class="newsletterForm">
+                    <input type="email" placeholder="Your email address" class="newsletterInput" required>
+                    <button type="submit" class="newsletterBtn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+        <div id="newsletterPopup" class="popupOverlay">
+            <div class="popupCard newsletterPopup">
+                <div class="popupIcon success">
+                    <svg viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/>
+                    </svg>
+                </div>
+                <h3>Subscribed Successfully!</h3>
+                <p>You'll now receive exclusive offers and updates.</p>
+                <button class="popupCloseBtn">&times;</button>
+                <button class="popupActionBtn" id="closeNewsletterPopup">Awesome!</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footerContent">
+                    <div class="footerColumn">
+                        <h3>Zithande Trade Hub</h3>
+                        <p>Premium e-commerce platform offering high-quality products with exceptional customer service.</p>
+                        <div class="socialLinks">
+                            <a href="https://www.facebook.com/" class="socialLink"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/" class="socialLink"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/" class="socialLink"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/" class="socialLink"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Quick Links</h3>
+                        <ul class="footerLinks">
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Customer Service</h3>
+                        <ul class="footerLinks">
+                            <li><a href="#" id="profileLink">My Account</a></li>
+                            <li><a href="tracking.html">Order Tracking</a></li>
+                            <li><a href="#" id="footerWishlistLink">Wishlist</a></li>
+                            <li><a href="returns.html">Returns & Exchanges</a></li>
+                            <li><a href="contact.html#faq-section">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Contact Us</h3>
+                        <div class="footerContact">
+                            <p><i class="fas fa-map-marker-alt"></i> 493 Opstal Street, Die Wilgers, Pretoria 0184</p>
+                            <p><i class="fas fa-phone"></i> 076 060 1488</p>
+                            <p><i class="fas fa-envelope"></i> support@zithandetradehub.com</p>
+                            <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 4:30PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footerBottom">
+                    <p>&copy; 2025 Zithande Trade Hub. All Rights Reserved. | <a href="info.html#privacy">Privacy Policy</a> | <a href="info.html#terms">Terms of Service</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Functionality -->
+        <script src="/js/home.js"></script>
+    </body>
+</html>
