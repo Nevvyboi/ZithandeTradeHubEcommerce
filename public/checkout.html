@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zithande Trade Hub - E-Commerce Home Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/checkout.css">
+    </head>
+
+    <body>
+
+        <!--Header-->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        ZithandeTradeHub
+                    </a>
+
+                    <ul class="navLinks">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <div class="navIcons">
+                        <a href="#" id="wishlistBtn">
+                            <i class="fas fa-heart"></i>
+                            <span class="wishlistCount">0</span>
+                        </a>
+                        <a href="#" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cartCount">0</span>
+                        </a>
+                        <a href="#" id="profileLink"><i class="fas fa-user"></i></a>
+                        <div class="hamburger">
+                          <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+
+                    <div id="emptyWishlistPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-heart-broken"></i>
+                            </div>
+                            <h3>Oops, Empty Wishlist!</h3>
+                            <p>You haven’t saved any items yet. Start exploring!</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn" onclick="window.location.href='shop.html'">Browse Products</button>
+                        </div>
+                    </div>
+
+                    <div id="emptyCartPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-shopping-basket"></i>
+                            </div>
+                            <h3>Your Cart is Empty!</h3>
+                            <p>Looks like you haven’t added anything to your cart yet.</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn" onclick="window.location.href='shop.html'">Shop Now</button>
+                        </div>
+                    </div>
+
+                    <div id="loginRequiredPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-user-lock"></i>
+                            </div>
+                            <h3>Login Required</h3>
+                            <p>Please log in to continue with checking out!</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn" onclick="window.location.href='auth.html'">Login Now</button>
+                        </div>
+                    </div>
+
+                    <div id="validationPopup" class="popupOverlay" style="display:none;">
+                        <div class="popupCard">
+                           <div class="popupIcon">
+                                <i class="fas fa-exclamation-circle" style="color: orange;"></i>
+                           </div>
+                            <h3>Missing Fields</h3>
+                            <p>Please fill out all required fields before proceeding with checkout.</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="btn btnPrimary">Okay</button>
+                        </div>
+                    </div>
+
+                    <div id="loadingPopup" class="popupOverlay" style="display:none;">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                            <h3>Processing Payment...</h3>
+                            <p>Please wait while we process your payment.</p>
+                        </div>
+                      </div>
+                      
+                      <div id="successPopup" class="popupOverlay" style="display:none;">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-check-circle" style="color:green;"></i>
+                            </div>
+                            <h3>Payment Successful</h3>
+                            <p>Your order has been placed successfully!</p>
+                            <button onclick="window.location.href='home.html'" class="btn btnPrimary">Continue Shopping</button>
+                        </div>
+                      </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="cart.html">Cart</a></li>
+                    <li class="breadcrumb-item active">Checkout</li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="checkout">
+            <div class="container">
+                <h1 class="sectionTitle">Checkout</h1>
+        
+                <div class="checkoutColumns" style="display: flex; gap: 30px; align-items: flex-start;">
+        
+                    <div class="checkoutBilling" style="flex: 1;">
+                        <div class="billingForm">
+                            <h3>Billing Details</h3>
+                            <form>
+                                <div class="formRow">
+                                    <div class="formGroup">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="first-name" required>
+                                    </div>
+                                    <div class="formGroup">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="last-name" required>
+                                    </div>
+                                </div>
+        
+                                <div class="formGroup">
+                                    <label for="company">Company Name (Optional)</label>
+                                    <input type="text" id="company">
+                                </div>
+        
+                                <div class="formGroup">
+                                    <label for="streetAddress">Street Address</label>
+                                    <input type="text" id="street-address" placeholder="House number and street name" required>
+                                    <input type="text" placeholder="Apartment, suite, unit, etc. (optional)">
+                                </div>
+        
+                                <div class="formGroup">
+                                    <label for="city">Town / City</label>
+                                    <input type="text" id="city" required>
+                                </div>
+        
+                                <div class="formRow">
+                                    <div class="formGroup">
+                                        <label for="state">State / County</label>
+                                        <input type="text" id="state" required>
+                                    </div>
+                                    <div class="formGroup">
+                                        <label for="postcode">Postcode / ZIP</label>
+                                        <input type="text" id="postcode" required>
+                                    </div>
+                                </div>
+        
+                                <div class="formRow">
+                                    <div class="formGroup">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" required>
+                                    </div>
+                                    <div class="formGroup">
+                                        <label for="phone">Phone</label>
+                                        <input type="tel" id="phone" required>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+        
+                    <div class="checkoutSummary" style="flex: 1;">
+                        <div class="orderSummary">
+                            <h3>Your Order</h3>
+                            <div class="summaryTable">
+                                <div class="summaryHeader">
+                                    <div class="headerProduct">Product</div>
+                                    <div class="headerTotal">Total</div>
+                                </div>
+                        
+                                <div id="orderItemsContainer">
+
+                                </div>
+                        
+                                <div class="summaryRow">
+                                    <span>Subtotal</span>
+                                    <span id="summarySubtotal">$0.00</span>
+                                </div>
+                        
+                                <div class="summaryRow">
+                                    <span>Shipping</span>
+                                    <span id="summaryShipping">Free Shipping</span>
+                                </div>
+                        
+                                <div class="summaryRow">
+                                    <span>Payment Method</span>
+                                    <span class="paymentMethod">Credit Card</span>
+                                </div>
+                        
+                                <div class="summaryRow total">
+                                    <span>Total</span>
+                                    <span id="summaryTotal">$0.00</span>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="checkoutPayment" style="flex: 1;">
+                        <div class="paymentContainer">
+                            <div class="paymentMethods">
+        
+                                <div class="paymentMethod active">
+                                    <input type="radio" name="payment" id="credit-card" checked>
+                                    <label for="credit-card">
+                                        <i class="far fa-credit-card"></i>
+                                        <span>Credit Card</span>
+                                    </label>
+                                    <div class="paymentDetails">
+                                        <div class="formGroup">
+                                            <label for="card-number">Card Number</label>
+                                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                                        </div>
+                                        <div class="formGroup">
+                                            <label for="card-name">Name on Card</label>
+                                            <input type="text" id="card-name" placeholder="John Doe">
+                                        </div>
+                                        <div class="formRow">
+                                            <div class="formGroup">
+                                                <label for="card-expiry">Expiry Date</label>
+                                                <input type="text" id="card-expiry" placeholder="MM/YY">
+                                            </div>
+                                            <div class="formGroup">
+                                                <label for="card-cvv">CVV</label>
+                                                <input type="text" id="card-cvv" placeholder="123">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="paymentMethod">
+                                    <input type="radio" name="payment" id="paypal">
+                                    <label for="paypal">
+                                        <i class="fab fa-paypal"></i>
+                                        <span>PayPal</span>
+                                    </label>
+                                    <div class="paymentDetails">
+                                        <p>You will be redirected to PayPal website to complete your payment securely.</p>
+                                    </div>
+                                </div>
+        
+                                <div class="paymentMethod">
+                                    <input type="radio" name="payment" id="bank-transfer">
+                                    <label for="bank-transfer">
+                                        <i class="fas fa-university"></i>
+                                        <span>Direct Bank Transfer</span>
+                                    </label>
+                                    <div class="paymentDetails">
+                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="termsCheckbox">
+                                <input type="checkbox" id="terms" required>
+                                <label for="terms">I have read and agree to the website <a href="info.html">terms and conditions</a></label>
+                            </div>
+        
+                            <button class="btn btnPrimary placeOrder">Place Order</button>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footerContent">
+                    <div class="footerColumn">
+                        <h3>Zithande Trade Hub</h3>
+                        <p>Premium e-commerce platform offering high-quality products with exceptional customer service.</p>
+                        <div class="socialLinks">
+                            <a href="https://www.facebook.com/" class="socialLink"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/" class="socialLink"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/" class="socialLink"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/" class="socialLink"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Quick Links</h3>
+                        <ul class="footerLinks">
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Customer Service</h3>
+                        <ul class="footerLinks">
+                            <li><a href="#" id="profileLink">My Account</a></li>
+                            <li><a href="tracking.html">Order Tracking</a></li>
+                            <li><a href="#" id="footerWishlistLink">Wishlist</a></li>
+                            <li><a href="returns.html">Returns & Exchanges</a></li>
+                            <li><a href="contact.html#faq-section">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footerColumn">
+                        <h3>Contact Us</h3>
+                        <div class="footerContact">
+                            <p><i class="fas fa-map-marker-alt"></i> 493 Opstal Street, Die Wilgers, Pretoria 0184</p>
+                            <p><i class="fas fa-phone"></i> 076 060 1488</p>
+                            <p><i class="fas fa-envelope"></i> support@zithandetradehub.com</p>
+                            <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 4:30PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footerBottom">
+                    <p>&copy; 2025 Zithande Trade Hub. All Rights Reserved. | <a href="info.html#privacy">Privacy Policy</a> | <a href="info.html#terms">Terms of Service</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Functionality -->
+        <script src="/js/checkout.js"></script>
+    </body>
+</html>

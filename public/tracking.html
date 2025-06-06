@@ -19,7 +19,7 @@
 
                 <ul class="navLinks">
                     <li><a href="home.html">Home</a></li>
-                    <li><a href="">Shop</a></li>
+                    <li><a href="shop.html">Shop</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -52,7 +52,6 @@
                     </div>
                 </div>
 
-                <!-- Empty Cart Popup -->
                 <div id="emptyCartPopup" class="popupOverlay">
                     <div class="popupCard">
                         <div class="popupIcon">
@@ -62,6 +61,18 @@
                         <p>Looks like you haven’t added anything to your cart yet.</p>
                         <button class="popupCloseBtn">&times;</button>
                         <button class="popupActionBtn">Shop Now</button>
+                    </div>
+                </div>
+
+                <div id="loginRequiredPopup" class="popupOverlay">
+                    <div class="popupCard">
+                        <div class="popupIcon">
+                            <i class="fas fa-user-lock"></i>
+                        </div>
+                        <h3>Login Required</h3>
+                        <p>Please log in to access your cart/wishlist!</p>
+                        <button class="popupCloseBtn">&times;</button>
+                        <button class="popupActionBtn" onclick="window.location.href='auth.html'">Login Now</button>
                     </div>
                 </div>
             </nav>

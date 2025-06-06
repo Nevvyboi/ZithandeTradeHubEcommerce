@@ -51,15 +51,27 @@ document.getElementById("messageSubmittedPopup").addEventListener("click", funct
     }
 });
 
-document.getElementById("wishlistBtn").addEventListener("click", function(e) {
-    e.preventDefault();
-    const wishlistCount = parseInt(document.querySelector(".wishlistCount").textContent);
-    if (wishlistCount === 0) {
-        document.getElementById("emptyWishlistPopup").style.display = "flex";
-    } else {
-        window.location.href = "/wishlist"; 
-    }
-});
+const wishlistBtn = document.getElementById("wishlistBtn");
+if (wishlistBtn) {
+    wishlistBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const loggedIn = getCookie('loggedIn');
+        if (loggedIn !== 'true') {
+            const loginPopup = document.getElementById("loginRequiredPopup");
+            if (loginPopup) loginPopup.style.display = "flex";
+            return;
+        }
+
+        const wishlistCount = parseInt(document.querySelector(".wishlistCount")?.textContent || "0");
+        if (wishlistCount === 0) {
+            const popup = document.getElementById("emptyWishlistPopup");
+            if (popup) popup.style.display = "flex";
+        } else {
+            window.location.href = "profile.html#wishlist";
+        }
+    });
+}
 
 const footerWishlistBtn = document.getElementById("footerWishlistLink");
 if (footerWishlistBtn) {
@@ -77,28 +89,39 @@ if (footerWishlistBtn) {
     });
 }
 
-document.getElementById("cartBtn").addEventListener("click", function(e) {
-    e.preventDefault();
-    const cartCount = parseInt(document.querySelector(".cartCount").textContent);
-    if (cartCount === 0) {
-        document.getElementById("emptyCartPopup").style.display = "flex";
-    } else {
-        window.location.href = "/cart";
-    }
-});
+const cartBtn = document.getElementById("cartBtn");
+if (cartBtn) {
+    cartBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const loggedIn = getCookie('loggedIn');
+        if (loggedIn !== 'true') {
+            const loginPopup = document.getElementById("loginRequiredPopup");
+            if (loginPopup) loginPopup.style.display = "flex";
+            return;
+        }
+
+        const cartCount = parseInt(document.querySelector(".cartCount").textContent);
+        if (cartCount === 0) {
+            const popup = document.getElementById("emptyCartPopup");
+            if (popup) popup.style.display = "flex";
+        } else {
+            window.location.href = "cart.html";
+        }
+    });
+}
 
 document.querySelectorAll(".popupCloseBtn, .popupOverlay").forEach(element => {
     element.addEventListener("click", function(e) {
         if (e.target.classList.contains("popupCloseBtn") || e.target.classList.contains("popupOverlay")) {
-            document.getElementById("emptyWishlistPopup").style.display = "none";
-            document.getElementById("emptyCartPopup").style.display = "none";
+            const emptyWishlist = document.getElementById("emptyWishlistPopup");
+            const emptyCart = document.getElementById("emptyCartPopup");
+            const notLoggedIn = document.getElementById('loginRequiredPopup');
+            
+            if (emptyWishlist) emptyWishlist.style.display = "none";
+            if (emptyCart) emptyCart.style.display = "none";
+            if (notLoggedIn) notLoggedIn.style.display = "none";
         }
-    });
-});
-
-document.querySelectorAll(".popupActionBtn").forEach(btn => {
-    btn.addEventListener("click", function() {
-        window.location.href = "/products";
     });
 });
 

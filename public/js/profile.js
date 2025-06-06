@@ -254,6 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
       loadUserProfile(userEmail);
       loadWishlist(userEmail);
       updateCounts(userEmail);
+      loadOrders();
   }
 
   const hash = window.location.hash.substring(1);
@@ -270,4 +271,170 @@ document.addEventListener('DOMContentLoaded', () => {
           }
       }
   }
+});
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+async function loadOrders() {
+  const userEmail = decodeURIComponent(getCookie("userEmail"));
+
+  try {
+      const res = await fetch(`/api/orders/${encodeURIComponent(userEmail)}`);
+      const data = await res.json();
+
+      const ordersBody = document.getElementById("ordersBody");
+      const noOrdersMessage = document.getElementById("noOrdersMessage");
+
+      ordersBody.innerHTML = "";
+
+      if (data.length === 0) {
+          noOrdersMessage.style.display = "block";
+          return;
+      } else {
+          noOrdersMessage.style.display = "none";
+      }
+
+      data.forEach(order => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+              <td>#${order.id}</td>
+              <td>${new Date(order.createdAt).toLocaleDateString()}</td>
+              <td><span class="status ${order.status === 'cancelled' ? 'cancelled' : 'completed'}">${capitalize(order.status)}</span></td>
+              <td>R${order.total.toFixed(2)}</td>
+              <td><a href="#" class="viewOrder" data-order-id="${order.id}">View</a></td>
+          `;
+          ordersBody.appendChild(row);
+      });
+
+      document.querySelectorAll('.viewOrder').forEach(button => {
+        button.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const orderId = this.dataset.orderId;
+
+            try {
+                const res = await fetch(`/api/orders/details/${orderId}`);
+                const data = await res.json();
+
+                let popupHTML = '<h3>Order Details</h3>';
+                data.items.forEach(item => {
+                    popupHTML += `
+                        <div class="orderItem">
+                            <img src="${item.image}" width="60" />
+                            <div>
+                                <strong>${item.name}</strong><br>
+                                Quantity: ${item.quantity}<br>
+                                Price: R${item.price}
+                            </div>
+                        </div><hr>
+                    `;
+                });
+
+                document.querySelector('#orderPopup .popupContent').innerHTML = popupHTML;
+                document.querySelector('#orderPopup').style.display = 'flex';
+
+            } catch (err) {
+                console.error("❌ Error loading order details:", err);
+            }
+        });
+      });
+
+  } catch (err) {
+      console.error("Error loading orders:", err);
+  }
+}
+
+const cartBtn = document.getElementById("cartBtn");
+if (cartBtn) {
+    cartBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const loggedIn = getCookie('loggedIn');
+        if (loggedIn !== 'true') {
+            const loginPopup = document.getElementById("loginRequiredPopup");
+            if (loginPopup) loginPopup.style.display = "flex";
+            return;
+        }
+
+        const cartCount = parseInt(document.querySelector(".cartCount").textContent);
+        if (cartCount === 0) {
+            const popup = document.getElementById("emptyCartPopup");
+            if (popup) popup.style.display = "flex";
+        } else {
+            window.location.href = "cart.html";
+        }
+    });
+}
+
+const wishlistBtn = document.getElementById("wishlistBtn");
+if (wishlistBtn) {
+    wishlistBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const loggedIn = getCookie('loggedIn');
+        if (loggedIn !== 'true') {
+            const loginPopup = document.getElementById("loginRequiredPopup");
+            if (loginPopup) loginPopup.style.display = "flex";
+            return;
+        }
+
+        const wishlistCount = parseInt(document.querySelector(".wishlistCount")?.textContent || "0");
+        if (wishlistCount === 0) {
+            const popup = document.getElementById("emptyWishlistPopup");
+            if (popup) popup.style.display = "flex";
+        } else {
+            window.location.href = "profile.html#wishlist";
+        }
+    });
+}
+
+document.querySelectorAll(".popupCloseBtn, .popupOverlay").forEach(element => {
+  element.addEventListener("click", function(e) {
+      if (e.target.classList.contains("popupCloseBtn") || e.target.classList.contains("popupOverlay")) {
+          const emptyWishlist = document.getElementById("emptyWishlistPopup");
+          const emptyCart = document.getElementById("emptyCartPopup");
+          
+          if (emptyWishlist) emptyWishlist.style.display = "none";
+          if (emptyCart) emptyCart.style.display = "none";
+      }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const userEmail = getCookie("userEmail");
+  const decodedEmail = decodeURIComponent(userEmail);
+
+  try {
+      const response = await fetch(`/api/profile/${decodedEmail}`);
+      const data = await response.json();
+
+      document.getElementById("firstName").value = data.firstName;
+      document.getElementById("lastName").value = data.lastName;
+      document.getElementById("email").value = data.email;
+  } catch (err) {
+      console.error("Error loading profile", err);
+  }
+});
+
+document.querySelector('.accountForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const userEmail = getCookie("userEmail");
+  const decodedEmail = decodeURIComponent(userEmail);
+  const newPassword = document.getElementById('newPass').value;
+
+  if (newPassword.trim() === "") {
+      alert("No password change requested.");
+      return;
+  }
+
+  const res = await fetch('http://localhost/php/updatePassword.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: decodedEmail, newPassword })
+  });
+
+  const result = await res.json();
+  alert(result.message);
 });

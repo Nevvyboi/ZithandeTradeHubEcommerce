@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Zithande Trade Hub - E-Commerce Home Page</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="stylesheet" href="/css/shop.css">
+        <link rel="stylesheet" href="/css/cart.css">
     </head>
 
     <body>
@@ -65,29 +65,16 @@
                         </div>
                     </div>
 
-                    <div id="loginRequiredPopup" class="popupOverlay">
+                    <div id="selectProvincePopup" class="popupOverlay" style="display: none;">
                         <div class="popupCard">
                             <div class="popupIcon">
-                                <i class="fas fa-user-lock"></i>
+                                <i class="fas fa-times"></i>
                             </div>
-                            <h3>Login Required</h3>
-                            <p>Please log in to access your cart/wishlist!</p>
-                            <button class="popupCloseBtn">&times;</button>
-                            <button class="popupActionBtn" onclick="window.location.href='auth.html'">Login Now</button>
-                        </div>
-                    </div>
-
-                    <div id="generalAlertPopup" class="popupOverlay">
-                        <div class="popupCard">
-                            <div class="popupIcon">
-                                <i class="fas fa-info-circle"></i> 
-                            </div>
-                            <h3 id="alertPopupTitle">Notice</h3>
-                            <p id="alertPopupMessage"></p>
+                            <h3>Province Required</h3>
+                            <p>Please select your province for shipping charges!</p>
                             <button class="popupCloseBtn">&times;</button>
                         </div>
                     </div>
-
                 </nav>
             </div>
         </header>
@@ -97,54 +84,69 @@
             <div class="container">
                 <ul class="breadCrumbList">
                     <li class="breadCrumbItem"><a href="index.html">Home</a></li>
-                    <li class="breadCrumbItem active">Shop</li>
+                    <li class="breadCrumbItem active">Shopping Cart</li>
                 </ul>
             </div>
         </div>
-                  
-            <!-- Shop Section -->
-        <section class="shop">
+
+        <section class="cart">
             <div class="container">
-                <div class="shopHeader">
-                    <h1 class="sectionTitle">Our Products</h1>
-                    <div class="shopTools">
-                        <div class="sortBy">
-                            <label for="sort">Sort by:</label>
-                            <select id="sort">
-                                <option value="popular">Popular</option>
-                                <option value="newest">Newest</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
+                <h1 class="sectionTitle">Your Shopping Cart</h1>
+                
+                <div class="cartWrapper">
+                    <!-- Cart Items -->
+                    <div class="cartItems" id="cartItems">
+                        <div class="cartHeader">
+                            <div class="headerItem product">Product</div>
+                            <div class="headerItem price">Price</div>
+                            <div class="headerItem quantity">Quantity</div>
+                            <div class="headerItem total">Total</div>
+                            <div class="headerItem remove">Remove</div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Cart Summary -->
+                    <div class="cartSummary">
+                        <h3>Cart Totals</h3>
+                        <div class="summaryTable">
+                            <div class="summaryRow">
+                                <span>Subtotal</span>
+                                <span id="subtotal">$0.00</span>
+                            </div>
+                            <div class="summaryRow">
+                                <span>Tax</span>
+                                <span id="tax">$0.00</span>
+                            </div>
+                            <div class="summaryRowTotal">
+                                <span>Total</span>
+                                <span id="total">$0.00</span>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="shippingCalculator">
+                            <h4>Calculate Shipping</h4>
+                            <select>
+                                <option value="">Select Province</option>
+                                <option value="gt">Guateng</option>
+                                <option value="wc">Western Cape</option>
+                                <option value="nw">North West</option>
+                                <option value="mp">Mpumalanga</option>
+                                <option value="lp">Limpopo</option>
+                                <option value="kn">KwaZulu-Natal</option>
+                                <option value="fs">Free State</option>
+                                <option value="ec">Eastern Cape</option>
                             </select>
                         </div>
-                        <div class="viewOptions">
-                            <button class="viewBtn active" data-view="grid"><i class="fas fa-th"></i></button>
-                            <button class="viewBtn" data-view="list"><i class="fas fa-list"></i></button>
+                        
+                        <div class="checkoutBtn">
+                            <button id="checkoutButton" class="btn btnPrimary">Proceed to Checkout</button>
                         </div>
                     </div>
                 </div>
                 
-                <div class="shopContent">
-                    <aside class="shopSidebar">
-                        <div class="sidebarWidget">
-                            <h3>Categories</h3>
-                            <ul class="categoryList">
-                                <li><a href="#" data-id="1">Jewelry</a></li>
-                                <li><a href="#" data-id="2">Clothing</a></li>
-                                <li><a href="#" data-id="3">Home Decor</a></li>
-                                <li><a href="#" data-id="4">Art</a></li>
-                                <li><a href="#" data-id="5">Electronics</a></li>
-                            </ul>
-                        </div>
-                    </aside>
-                    
-                    <!-- Products Grid -->
-                    <main>
-                        <div class="productsGrid">
-                            <!-- Your products get rendered here -->
-                        </div>
-                    </main>
-                </div>
+                
             </div>
         </section>
 
@@ -162,7 +164,6 @@
                             <a href="https://www.pinterest.com/" class="socialLink"><i class="fab fa-pinterest"></i></a>
                         </div>
                     </div>
-                    
                     <div class="footerColumn">
                         <h3>Quick Links</h3>
                         <ul class="footerLinks">
@@ -200,6 +201,6 @@
         </footer>
 
         <!-- Functionality -->
-        <script src="/js/shop.js"></script>
+        <script src="/js/cart.js"></script>
     </body>
 </html>
