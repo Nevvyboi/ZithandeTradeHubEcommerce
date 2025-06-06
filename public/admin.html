@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zithande Trade Hub - E-Commerce Information Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/admin.css">
+    </head>
+
+    <body>
+        <!--Header-->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        ZithandeTradeHub Admin
+                    </a>
+                    <a href="home.html" class="backToShop"><i class="fas fa-arrow-left"></i> Back to Shop</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="breadCrumb">
+            <div class="container">
+                <ul class="breadCrumbList">
+                    <li class="breadCrumbItem"><a href="home.html">Home</a></li>
+                    <li class="breadCrumbItem active">My Account</li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="admin">
+            <div class="container">
+                <h1 class="sectionTitle">Admin Account</h1>
+                <div class="accountWrapper">
+                    <aside class="accountSidebar">
+                        <ul class="accountMenu">
+                            <li class="active"><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                            <li><a href="#orders"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+                            <li><a href="#products"><i class="fas fa-product-hunt"></i> Products</a></li>
+                            <li><a href="#accounts"><i class="fas fa-user"></i> Accounts</a></li>
+                            <li><a href="#reviews"><i class="fas fa-star"></i> Reviews</a></li>
+                        </ul>
+                    </aside>
+        
+                    <main class="accountContent">
+                        <div id="dashboard" class="accountTab active">
+                            <h2>Dashboard</h2>
+
+                            <div class="cards">
+                                <div class="card cardPrimary">
+                                    <div class="cardTitle">Total Revenue</div>
+                                    <div id="totalRevenue" class="cardValue">R0.00</div>
+                                </div>
+                                <div class="card cardSuccess">
+                                    <div class="cardTitle">Total Orders</div>
+                                    <div id="totalOrders" class="cardValue">0</div>
+                                </div>
+                                <div class="card cardWarning">
+                                    <div class="cardTitle">Products</div>
+                                    <div id="totalProducts" class="cardValue">0</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="orders" class="accountTab">
+                            <h2>All Orders</h2>
+                            <p>View all orders placed by customers.</p>
+
+                            <table class="ordersTable">
+                                <thead>
+                                    <tr>
+                                        <th>Order #</th>
+                                        <th>Customer Name</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminOrdersBody">
+                                    <!-- Orders will be dynamically loaded here -->
+                                </tbody>
+                            </table>
+
+                            <div id="noOrdersMessage" style="display: none; margin-top: 20px;">
+                                <p>No orders placed yet.</p>
+                            </div>
+                        </div>
+
+                        <div id="products" class="accountTab">
+                            <h2>Products Details</h2>
+                            <table class="adminTable">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productsTableBody">
+                                    <!-- Products will be loaded dynamically here -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="accounts" class="accountTab">
+                            <h2>Accounts</h2>
+                          
+                            <h3>Buyers</h3>
+                            <table class="adminTable">
+                              <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Full Name</th>
+                                  <th>Email</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody id="buyersTable"></tbody>
+                            </table>
+                          
+                            <h3>Sellers</h3>
+                            <table class="adminTable">
+                              <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Full Name</th>
+                                  <th>Email</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody id="sellersTable"></tbody>
+                            </table>
+                        </div>                      
+
+                        <div id="reviews" class="accountTab">
+                            <h2>Reviews</h2>
+                            <table class="adminTable">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Review</th>
+                                        <th>Rating</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reviewsTableBody"></tbody>
+                            </table>
+                        </div>                        
+                        
+                    </main>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Functionality -->
+        <script src="/js/admin.js"></script>
+    </body>
+</html>

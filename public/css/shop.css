@@ -732,11 +732,11 @@ footer {
 }
 
 .wishlistBtn.active i {
-    color: red;
+    color: #e74c3c !important;
 }
 
 .cartBtn.active i {
-    color: #6a5acd;
+    color: #27ae60 !important;
 }
 
 .productContent {

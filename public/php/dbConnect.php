@@ -1,14 +1,23 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "zithandeTradeHubDatabase";
+// Connect to MySQL (re-use your existing dbConnect.php)
+include 'dbConnect.php';
 
-$conn = new mysqli($servername, $username, $password, $database);
+// Grab form data
+$name = $_POST['name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
 
-if ($conn->connect_error) {
-    die("❌ Connection failed: " . $conn->connect_error);
+// Insert into DB (create a simple contact_messages table)
+$sql = "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sss", $name, $email, $message);
+
+if ($stmt->execute()) {
+    echo "Message received!";
+} else {
+    echo "Error: " . $stmt->error;
 }
 
-$conn->set_charset("utf8");
+$stmt->close();
+$conn->close();
 ?>

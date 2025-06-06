@@ -694,3 +694,127 @@ footer {
     min-width: 120px;
 }
 
+/* Pop up*/
+.popupOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.popupCard {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    max-width: 320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    transform: scale(0.9);
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.popupIcon {
+    font-size: 60px;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+}
+
+.popupIcon .fa-shopping-basket {
+    color: #4ecdc4;
+}
+
+.popupCard h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.popupCard p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.popupCloseBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #999;
+    transition: 0.2s;
+}
+
+.popupCloseBtn:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+.popupActionBtn {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+}
+
+.popupActionBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(110, 142, 251, 0.4);
+}
+
+.popupCard.newsletterPopup {
+    max-width: 350px;
+}
+
+.popupIcon.success {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popupIcon.success svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+    animation: checkmark 0.5s ease-out;
+}
+
+.popupCard.newsletterPopup .popupIcon.success {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+
+.popupCard.newsletterPopup .popupActionBtn {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.popupCard.newsletterPopup .popupActionBtn:hover {
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+.orderItem {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}

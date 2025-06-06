@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const loginForm = document.getElementById('loginForm');
   const registerForm = document.getElementById('registerForm');
 
-  // Preserve tab state
   const tab = new URLSearchParams(window.location.search).get('tab');
   if (tab === 'register') {
     registerBtn.classList.add('active');
@@ -65,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Show popup error messages from ?error=...
   const errorMap = {
     email: 'This email is already in use.',
     emailexist: 'Email already registered. Please use a different one.',
@@ -116,23 +114,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 10);
   }
 
-  // LOGIN FORM
   loginFormEl.addEventListener('submit', function (e) {
     e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
 
+    // Hardcoded admin check
+    if (email === "zithande@admin.com" && password === "123") {
+        window.location.href = "admin.html";
+        return;
+    }
+
+    // Regular login flow
     fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
     })
-      .then(res => {
-        if (res.redirected) window.location.href = res.url;
-      });
+    .then(res => {
+      if (res.redirected) window.location.href = res.url;
+    });
   });
 
-  // REGISTER FORM
   registerFormEl.addEventListener('submit', function (e) {
     e.preventDefault();
     const fullName = document.getElementById('registerFullName').value;

@@ -12,13 +12,11 @@ const port = 3000;
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// FIXED: Middleware setup - removed duplicate body parsers
 app.use(cookieParser());
 app.use(cors());
-app.use(express.json({ limit: '50mb' })); // Only use express.json()
-app.use(express.urlencoded({ extended: true, limit: '50mb' })); // Only use express.urlencoded()
+app.use(express.json({ limit: '50mb' })); 
+app.use(express.urlencoded({ extended: true, limit: '50mb' })); 
 
-// Setup MySQL connection pool
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
@@ -29,7 +27,6 @@ const pool = mysql.createPool({
     multipleStatements: true
 });
 
-// Create DB and tables
 const db = mysql.createConnection({
     host: 'localhost',
     port: '3306',
@@ -73,10 +70,11 @@ db.connect(err => {
                 FOREIGN KEY (sellerId) REFERENCES zithandeUsers(id),
                 FOREIGN KEY (categoryId) REFERENCES zithandeCategories(id)
             );
-            CREATE TABLE IF NOT EXISTS zithandeCart (
+            CREATE TABLE IF NOT EXISTS zithandeCartItems (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 userId INT NOT NULL,
                 productId INT NOT NULL,
+                quantity INT NOT NULL DEFAULT 1,
                 FOREIGN KEY (userId) REFERENCES zithandeUsers(id),
                 FOREIGN KEY (productId) REFERENCES zithandeProducts(id)
             );
@@ -97,6 +95,17 @@ db.connect(err => {
                 FOREIGN KEY (orderId) REFERENCES zithandeOrders(id),
                 FOREIGN KEY (productId) REFERENCES zithandeProducts(id)
             );
+            CREATE TABLE IF NOT EXISTS zithandeReviews (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                productId INT NOT NULL,
+                userId INT NOT NULL,
+                rating INT NOT NULL,
+                review TEXT,
+                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                
+                FOREIGN KEY (productId) REFERENCES zithandeProducts(id),
+                FOREIGN KEY (userId) REFERENCES zithandeUsers(id)
+            );
             CREATE TABLE IF NOT EXISTS zithandeWishlist (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 userId INT NOT NULL,
@@ -112,8 +121,6 @@ db.connect(err => {
             if (err) throw err;
             console.log("Tables created!");
         });
-
-        app.use(express.static(path.join(__dirname, "../public")));
 
         app.get('/', (req, res) => {
             res.sendFile(path.join(__dirname, '../public/home.html'));
@@ -630,8 +637,8 @@ db.connect(err => {
                 const userId = results[0].id;
         
                 const sql = `
-                    SELECT p.id, p.name, p.price, p.image, p.stock
-                    FROM zithandeCart c
+                    SELECT p.id, p.name, p.price, p.image, p.stock, c.quantity
+                    FROM zithandeCartItems c
                     JOIN zithandeProducts p ON c.productId = p.id
                     WHERE c.userId = ?
                 `;
@@ -647,13 +654,15 @@ db.connect(err => {
                         name: item.name,
                         price: item.price,
                         stock: item.stock,
+                        quantity: item.quantity,
                         image: `data:image/jpeg;base64,${item.image.toString('base64')}`
-                    }));
+                    }));                    
         
+                    console.log(items);
                     res.json({ items });
                 });
             });
-        });       
+        });              
         
         app.get('/api/categories/counts', (req, res) => {
             const sql = `
@@ -745,7 +754,423 @@ db.connect(err => {
         
                 res.json({ message: 'Product deleted successfully' });
             });
-        });             
+        });      
+        
+        app.delete('/api/cart/remove', (req, res) => {
+            const userEmail = decodeURIComponent(req.query.userEmail);
+            const productId = parseInt(req.query.productId);
+        
+            if (!userEmail || !productId) {
+                return res.status(400).json({ message: "Missing userEmail or productId" });
+            }
+        
+            pool.query('SELECT id FROM zithandeUsers WHERE email = ?', [userEmail], (err, results) => {
+                if (err || results.length === 0) {
+                    return res.status(404).json({ message: 'User not found' });
+                }
+        
+                const userId = results[0].id;
+        
+                pool.query(
+                    'DELETE FROM zithandeCartItems WHERE userId = ? AND productId = ?',
+                    [userId, productId],
+                    (err, results) => {
+                        if (err) {
+                            console.error('❌ Error removing item:', err);
+                            return res.status(500).json({ message: 'Error removing item' });
+                        }
+                        res.json({ message: 'Item removed successfully' });
+                    }
+                );
+            });
+        });
+        
+        app.post('/api/cart/update-quantity', (req, res) => {
+            const { userEmail, productId, quantity } = req.body;
+        
+            pool.query('SELECT id FROM zithandeUsers WHERE email = ?', [userEmail], (err, results) => {
+                if (err || results.length === 0) {
+                    console.error('❌ User not found:', err);
+                    return res.status(404).json({ message: 'User not found' });
+                }
+        
+                const userId = results[0].id;
+        
+                pool.query(
+                    'UPDATE zithandeCartItems SET quantity = ? WHERE userId = ? AND productId = ?',
+                    [quantity, userId, productId],
+                    (err, result) => {
+                        if (err) {
+                            console.error('❌ Error updating quantity:', err);
+                            return res.status(500).json({ message: 'Failed to update quantity' });
+                        }
+        
+                        res.json({ message: 'Quantity updated successfully' });
+                    }
+                );
+            });
+        });    
+        
+        app.post('/api/orders/create', (req, res) => {
+            console.log("Incoming request body:", req.body);
+
+            const { userEmail, cart, billingInfo, total } = req.body;
+        
+            pool.query('SELECT id FROM zithandeUsers WHERE email = ?', [userEmail], (err, userResult) => {
+                if (err || userResult.length === 0) {
+                    return res.status(400).json({ error: 'User not found' });
+                }
+        
+                const userId = userResult[0].id;
+        
+                pool.query('INSERT INTO zithandeOrders (userId, total) VALUES (?, ?)', 
+                    [userId, total], (err, orderResult) => {
+                    if (err) {
+                        console.error('Error inserting order:', err);
+                        return res.status(500).json({ error: 'Failed to insert order' });
+                    }
+        
+                    const orderId = orderResult.insertId;
+        
+                    const items = cart.map(item => [orderId, item.id, item.quantity || 1, item.price]);
+        
+                    pool.query('INSERT INTO zithandeOrderItems (orderId, productId, quantity, price) VALUES ?', 
+                        [items], (err) => {
+                        if (err) {
+                            console.error('Error inserting order items:', err);
+                            return res.status(500).json({ error: 'Failed to insert order items' });
+                        }
+        
+                        pool.query('DELETE FROM zithandeCartItems WHERE userId = ?', [userId], () => {
+                            return res.json({ message: 'Order placed successfully' });
+                        });
+                    });
+                });
+            });
+        });
+
+        app.get('/api/orders/:email', (req, res) => {
+            const userEmail = decodeURIComponent(req.params.email);
+        
+            pool.query('SELECT id FROM zithandeUsers WHERE email = ?', [userEmail], (err, userResults) => {
+                if (err || userResults.length === 0) {
+                    console.error('User not found:', err);
+                    return res.json([]);
+                }
+        
+                const userId = userResults[0].id;
+        
+                const sql = `
+                    SELECT id, total, status, createdAt
+                    FROM zithandeOrders
+                    WHERE userId = ?
+                    ORDER BY createdAt DESC
+                `;
+        
+                pool.query(sql, [userId], (err, ordersResults) => {
+                    if (err) {
+                        console.error('Error fetching orders:', err);
+                        return res.status(500).json({ error: 'Error fetching orders' });
+                    }
+        
+                    res.json(ordersResults);
+                });
+            });
+        });
+        
+        app.get('/api/orders/details/:orderId', (req, res) => {
+            const orderId = req.params.orderId;
+        
+            const sql = `
+                SELECT p.name, p.price, p.image, oi.quantity
+                FROM zithandeOrderItems oi
+                JOIN zithandeProducts p ON oi.productId = p.id
+                WHERE oi.orderId = ?
+            `;
+        
+            pool.query(sql, [orderId], (err, results) => {
+                if (err) {
+                    console.error('❌ Error fetching order details:', err);
+                    return res.status(500).json({ error: 'Error fetching order details' });
+                }
+        
+                const items = results.map(item => ({
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity,
+                    image: `data:image/jpeg;base64,${item.image.toString('base64')}`
+                }));
+        
+                res.json({ items });
+            });
+        });        
+
+        app.get('/api/products/:id', (req, res) => {
+            const productId = req.params.id;
+        
+            const query = `
+                SELECT *
+                FROM zithandeProducts 
+                WHERE id = ?
+            `;
+        
+            pool.query(query, [productId], (err, result) => {
+                if (err) {
+                    console.error("Error fetching product:", err);
+                    return res.status(500).json({ message: "Failed to load product" });
+                }
+        
+                if (result.length === 0) {
+                    return res.status(404).json({ message: "Product not found" });
+                }
+        
+                const product = result[0];
+                
+                let imageBase64 = null;
+
+                if (product.image) {
+                    try {
+                        imageBase64 = Buffer.from(product.image).toString('base64');
+                    } catch (e) {
+                        console.error("Image conversion failed:", e);
+                    }
+                }
+        
+                res.json({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    description: product.description,
+                    image: imageBase64
+                });
+            });
+        });        
+
+        app.post('/api/reviews/add', (req, res) => {
+            const { productId, userEmail, rating, review } = req.body;
+        
+            pool.query('SELECT id, role FROM zithandeUsers WHERE email = ?', [userEmail], (err, results) => {
+                if (err || results.length === 0) {
+                    return res.status(400).json({ message: 'User not found.' });
+                }
+        
+                const user = results[0];
+        
+                if (user.role === 'seller') {
+                    return res.status(403).json({ message: 'Sellers cannot leave reviews.' });
+                }
+        
+                const userId = user.id;
+        
+                const insertQuery = 'INSERT INTO zithandeReviews (productId, userId, rating, review) VALUES (?, ?, ?, ?)';
+                pool.query(insertQuery, [productId, userId, rating, review], (err) => {
+                    if (err) {
+                        console.error('Error inserting review:', err);
+                        return res.status(500).json({ message: 'Failed to add review.' });
+                    }
+                    res.json({ message: 'Review added successfully.' });
+                });
+            });
+        }); 
+        
+        app.get('/api/reviews/:productId', (req, res) => {
+            const productId = req.params.productId;
+        
+            const sql = `
+                SELECT r.id, r.productId, r.userId, r.rating, r.review, r.createdAt, u.fullName 
+                FROM zithandeReviews r
+                JOIN zithandeUsers u ON r.userId = u.id
+                WHERE r.productId = ?
+                ORDER BY r.createdAt DESC
+            `;
+        
+            pool.query(sql, [productId], (err, results) => {
+                if (err) {
+                    console.error('Error fetching reviews:', err);
+                    return res.status(500).json({ message: 'Failed to fetch reviews.' });
+                }
+                res.json({ reviews: results });
+            });
+        });        
+                
+        app.get('/api/profile/:email', (req, res) => {
+            const email = decodeURIComponent(req.params.email);
+        
+            const query = 'SELECT fullName, email FROM zithandeUsers WHERE email = ?';
+            pool.query(query, [email], (err, results) => {
+                if (err) {
+                    console.error('Error fetching profile:', err);
+                    return res.status(500).json({ message: 'Failed to load profile.' });
+                }
+                if (results.length === 0) {
+                    return res.status(404).json({ message: 'User not found.' });
+                }
+        
+                const fullName = results[0].fullName;
+                const [firstName, ...rest] = fullName.split(" ");
+                const lastName = rest.join(" ");
+                
+                res.json({
+                    firstName,
+                    lastName,
+                    email: results[0].email
+                });
+            });
+        });
+
+        app.get('/api/admin/stats', (req, res) => {
+            let stats = { revenue: 0, orders: 0, products: 0 };
+        
+            const revenueQuery = `SELECT IFNULL(SUM(total), 0) AS revenue FROM zithandeOrders`;
+            const ordersQuery = `SELECT COUNT(*) AS orders FROM zithandeOrders`;
+            const productsQuery = `SELECT COUNT(*) AS products FROM zithandeProducts`;
+        
+            pool.query(revenueQuery, (err, revenueResult) => {
+                if (err) {
+                    console.error('Error fetching revenue:', err);
+                    return res.status(500).json({ message: 'Failed to load revenue' });
+                }
+                stats.revenue = revenueResult[0].revenue;
+        
+                pool.query(ordersQuery, (err, ordersResult) => {
+                    if (err) {
+                        console.error('Error fetching orders:', err);
+                        return res.status(500).json({ message: 'Failed to load orders' });
+                    }
+                    stats.orders = ordersResult[0].orders;
+        
+                    pool.query(productsQuery, (err, productsResult) => {
+                        if (err) {
+                            console.error('Error fetching products:', err);
+                            return res.status(500).json({ message: 'Failed to load products' });
+                        }
+                        stats.products = productsResult[0].products;
+        
+                        res.json(stats);
+                    });
+                });
+            });
+        });        
+        
+        app.get('/api/admin/orders', (req, res) => {
+            const query = `
+                SELECT o.id, u.fullName AS customerName, o.createdAt, o.status, o.total 
+                FROM zithandeOrders o
+                JOIN zithandeUsers u ON o.userId = u.id
+            `;
+            pool.query(query, (err, results) => {
+                if (err) {
+                    console.error('Error fetching orders:', err);
+                    return res.status(500).json({ message: 'Failed to fetch orders.' });
+                }
+                res.json({ orders: results });
+            });
+        });
+
+        app.delete('/api/admin/orders/:orderId', (req, res) => {
+            const orderId = req.params.orderId;
+        
+            const deleteOrderItemsQuery = 'DELETE FROM zithandeOrderItems WHERE orderId = ?';
+            const deleteOrderQuery = 'DELETE FROM zithandeOrders WHERE id = ?';
+        
+            pool.query(deleteOrderItemsQuery, [orderId], (err) => {
+                if (err) {
+                    console.error('Error deleting order items:', err);
+                    return res.status(500).json({ success: false });
+                }
+        
+                pool.query(deleteOrderQuery, [orderId], (err) => {
+                    if (err) {
+                        console.error('Error deleting order:', err);
+                        return res.status(500).json({ success: false });
+                    }
+        
+                    res.json({ success: true });
+                });
+            });
+        });
+
+        app.get('/api/admin/products', (req, res) => {
+            pool.query('SELECT id, name, description, price, stock FROM zithandeProducts', (err, results) => {
+                if (err) {
+                    console.error('Error fetching products:', err);
+                    return res.status(500).json({ message: 'Failed to fetch products' });
+                }
+                res.json({ products: results });
+            });
+        });
+        
+        app.delete('/api/admin/products/:id', (req, res) => {
+            const productId = req.params.id;
+            pool.query('DELETE FROM zithandeProducts WHERE id = ?', [productId], (err) => {
+                if (err) {
+                    console.error('Error deleting product:', err);
+                    return res.status(500).json({ message: 'Failed to delete product' });
+                }
+                res.json({ message: 'Product deleted successfully' });
+            });
+        });
+
+        app.get('/api/admin/accounts', (req, res) => {
+            const query = 'SELECT id, fullName, email, role, createdAt FROM zithandeUsers';
+        
+            pool.query(query, (err, results) => {
+                if (err) {
+                    console.error('Error fetching accounts:', err);
+                    return res.status(500).json({ message: 'Failed to fetch accounts' });
+                }
+        
+                const buyers = results.filter(user => user.role === 'buyer');
+                const sellers = results.filter(user => user.role === 'seller');
+        
+                res.json({ buyers, sellers });
+            });
+        });
+        
+        app.delete('/api/admin/accounts/:id', (req, res) => {
+            const userId = req.params.id;
+            const query = 'DELETE FROM zithandeUsers WHERE id = ?';
+        
+            pool.query(query, [userId], (err, result) => {
+                if (err) {
+                    console.error('Error deleting user:', err);
+                    return res.status(500).json({ message: 'Failed to delete user' });
+                }
+        
+                res.json({ message: 'User deleted successfully' });
+            });
+        });
+        
+        app.get('/api/admin/reviews', (req, res) => {
+            const query = `
+                SELECT r.id, r.rating, r.review, r.createdAt, p.name AS productName
+                FROM zithandeReviews r
+                JOIN zithandeProducts p ON r.productId = p.id
+                ORDER BY r.createdAt DESC
+            `;
+
+            pool.query(query, (err, results) => {
+                if (err) {
+                    console.error('Error fetching reviews:', err);
+                    return res.status(500).json({ message: 'Failed to fetch reviews.' });
+                }
+                res.json(results);
+            });
+        });
+
+        app.delete('/api/admin/reviews/:id', (req, res) => {
+            const reviewId = req.params.id;
+
+            pool.query('DELETE FROM zithandeReviews WHERE id = ?', [reviewId], (err, results) => {
+                if (err) {
+                    console.error('Error deleting review:', err);
+                    return res.status(500).json({ message: 'Failed to delete review.' });
+                }
+                res.json({ message: 'Review deleted successfully.' });
+            });
+        });
+
+        app.use(express.static(path.join(__dirname, "../public")));
 
         app.listen(port, () => {
             console.log(`Server running on http://localhost:${port}`);
