@@ -52,12 +52,6 @@ db.connect(err => {
                 avatar LONGBLOB,
                 createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
-            CREATE TABLE IF NOT EXISTS zithandeCategories (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(100) NOT NULL,
-                description TEXT,
-                icon VARCHAR(255)
-            );
             CREATE TABLE IF NOT EXISTS zithandeProducts (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(255),
@@ -67,8 +61,7 @@ db.connect(err => {
                 stock INT,
                 sellerId INT,
                 categoryId INT,
-                FOREIGN KEY (sellerId) REFERENCES zithandeUsers(id),
-                FOREIGN KEY (categoryId) REFERENCES zithandeCategories(id)
+                FOREIGN KEY (sellerId) REFERENCES zithandeUsers(id)
             );
             CREATE TABLE IF NOT EXISTS zithandeCartItems (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -215,15 +208,15 @@ db.connect(err => {
             const { name, price, description, categoryId, stock, sellerId } = req.body;
         
             if (!req.file) {
-                console.error('❌ No image file uploaded');
+                console.error(`❌ No image file uploaded`);
                 return res.status(400).send('Image is required');
             }
         
             const imageBlob = req.file.buffer;
         
             const query = `
-                INSERT INTO zithandeProducts 
-                (name, description, price, image, stock, sellerId, categoryId) 
+                INSERT INTO zithandeProducts
+                (name, description, price, image, stock, sellerId, categoryId)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             `;
         
@@ -239,14 +232,14 @@ db.connect(err => {
         
             pool.query(query, values, (err, results) => {
                 if (err) {
-                    console.error('❌ DB Insert Error:', err);
+                    console.error(`❌ DB Insert Error:`, err);
                     return res.status(500).send('Database error: ' + err.sqlMessage);
                 }
         
-                console.log('✅ Product inserted:', results);
-                res.redirect('/seller.html');
+                console.log(`✅ Product inserted:`, results);
+                res.status(200).send("Product inserted");
             });
-        });
+        });        
         
         app.get('/api/getUserId/:email', (req, res) => {
             const userEmail = decodeURIComponent(req.params.email);
@@ -268,15 +261,21 @@ db.connect(err => {
         app.get('/api/sellerStats/:email', (req, res) => {
             const email = decodeURIComponent(req.params.email);
         
-            const sql = `
-                SELECT u.fullName, COUNT(p.id) AS productCount
+            const query = `
+                SELECT 
+                    u.fullName,
+                    COUNT(DISTINCT p.id) AS productCount,
+                    IFNULL(SUM(oi.price * oi.quantity), 0) AS totalRevenue,
+                    IFNULL(COUNT(DISTINCT r.id), 0) AS totalReviews
                 FROM zithandeUsers u
                 LEFT JOIN zithandeProducts p ON u.id = p.sellerId
+                LEFT JOIN zithandeOrderItems oi ON p.id = oi.productId
+                LEFT JOIN zithandeReviews r ON p.id = r.productId
                 WHERE u.email = ?
                 GROUP BY u.id
             `;
         
-            pool.query(sql, [email], (err, results) => {
+            pool.query(query, [email], (err, results) => {
                 if (err) {
                     console.error('Error fetching seller stats:', err);
                     return res.status(500).json({ error: 'Database error' });
@@ -285,7 +284,7 @@ db.connect(err => {
                 if (results.length === 0) {
                     return res.status(404).json({ error: 'User not found' });
                 }
-        
+                console.log(results[0]);
                 res.json(results[0]);
             });
         });
@@ -737,24 +736,24 @@ db.connect(err => {
             });
         });
 
-        app.delete('/api/delete-product/:id', (req, res) => {
-            const productId = req.params.id;
+        app.delete('/api/products/:id', (req, res) => {
+            const productId = parseInt(req.params.id);
+            
+            if (isNaN(productId)) {
+                return res.status(400).json({ error: 'Invalid product ID' });
+            }
         
-            const sql = 'DELETE FROM zithandeProducts WHERE id = ?';
-        
-            pool.query(sql, [productId], (err, results) => {
+            const query = 'DELETE FROM zithandeProducts WHERE id = ?';
+            
+            pool.query(query, [productId], (err, results) => {
                 if (err) {
                     console.error('Error deleting product:', err);
                     return res.status(500).json({ error: 'Database error' });
                 }
-        
-                if (results.affectedRows === 0) {
-                    return res.status(404).json({ message: 'Product not found' });
-                }
-        
-                res.json({ message: 'Product deleted successfully' });
+                res.json({ success: true, message: 'Product deleted successfully' });
             });
-        });      
+        });
+             
         
         app.delete('/api/cart/remove', (req, res) => {
             const userEmail = decodeURIComponent(req.query.userEmail);
@@ -1172,8 +1171,8 @@ db.connect(err => {
 
         app.use(express.static(path.join(__dirname, "../public")));
 
-        app.listen(port, () => {
-            console.log(`Server running on http://localhost:${port}`);
-        });
+        app.listen(3000, '0.0.0.0', () => {
+            console.log('Server running on http://0.0.0.0:3000');
+        });;
     });
 });
