@@ -67,23 +67,3 @@
 
 ---
 
-### 🏁 Getting Started
-
-```bash
-# Clone the repo
-git clone https://github.com/your-username/zithandetradehub.git
-
-# Navigate to the project
-cd zithandetradehub
-
-# Install backend dependencies
-npm install
-
-# Create a MySQL database
-# Import schema.sql into MySQL Workbench or use CLI
-
-# Start the server
-node app.js
-
-# Visit in browser
-http://localhost:3000
