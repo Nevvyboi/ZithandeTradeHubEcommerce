@@ -373,3 +373,167 @@ footer {
         width: 100%;
     }
 }
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 15px;
+    }
+    .legalCard {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 992px) {
+    .pageHeader {
+        padding: 50px 0;
+        margin-top: 70px;
+    }
+    .pageHeader h1 {
+        font-size: 2.2rem;
+    }
+    .legalTitle {
+        font-size: 22px;
+    }
+    .legalIntro {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    .navLinks {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        transition: left 0.3s ease;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    .navLinks.active {
+        left: 0;
+    }
+    .pageHeader {
+        padding: 40px 0;
+        margin-top: 70px;
+    }
+    .pageHeader h1 {
+        font-size: 2rem;
+    }
+    .legalTabs {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .legalTab {
+        width: 100%;
+        text-align: center;
+    }
+    .legalCard {
+        padding: 20px;
+    }
+    .legalHeader {
+        flex-direction: column;
+        text-align: center;
+    }
+    .legalIcon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .footerContent {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 15px 0;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .logo i {
+        font-size: 1.7rem;
+    }
+    .pageHeader {
+        padding: 30px 0;
+        margin-top: 60px;
+    }
+    .pageHeader h1 {
+        font-size: 1.8rem;
+    }
+    .legalTitle {
+        font-size: 20px;
+    }
+    .sectionTitle {
+        font-size: 17px;
+    }
+    .highlightBox {
+        padding: 12px;
+    }
+    .footerContent {
+        grid-template-columns: 1fr;
+    }
+    .footerColumn {
+        text-align: center;
+    }
+    .footerColumn h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .socialIcons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .pageHeader h1 {
+        font-size: 1.6rem;
+    }
+    .legalCard {
+        padding: 15px;
+    }
+    .legalTitle {
+        font-size: 18px;
+    }
+    .sectionList li {
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .navLinks {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow-y: auto;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo {
+        font-weight: 600;
+    }
+}
+
+@media print {
+    header, footer {
+        display: none;
+    }
+    .pageHeader {
+        background: none !important;
+        color: black !important;
+        padding: 20px 0 !important;
+        margin-top: 0 !important;
+    }
+    .legalCard {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+}

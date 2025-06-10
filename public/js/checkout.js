@@ -141,7 +141,7 @@ if (profileLink) {
 document.addEventListener("DOMContentLoaded", () => {
     const userEmail = getCookie("userEmail")
 
-    fetch(`http://localhost:3000/api/cart/items/${encodeURIComponent(userEmail)}`)
+    fetch(`/api/cart/items/${encodeURIComponent(userEmail)}`)
         .then(res => res.json())
         .then(data => {
             updateCounts(userEmail);
@@ -165,7 +165,7 @@ function updateCounts(userEmail) {
             console.error('Error updating wishlist count:', err);
         });
 
-    fetch(`http://localhost:3000/api/cart/count/${encodeURIComponent(userEmail)}`)
+    fetch(`/api/cart/count/${encodeURIComponent(userEmail)}`)
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             return res.json();

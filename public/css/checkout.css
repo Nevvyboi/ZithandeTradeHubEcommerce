@@ -657,3 +657,137 @@ footer {
         flex-direction: column;
     }
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .checkoutColumns {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .orderSummary {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .billingForm,
+    .orderSummary,
+    .paymentContainer {
+        padding: 20px;
+    }
+
+    .formRow {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .summaryHeader,
+    .summaryItem {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .headerProduct,
+    .headerTotal,
+    .itemProduct,
+    .itemTotal {
+        flex: 1;
+        text-align: left;
+        width: 100%;
+    }
+
+    .headerTotal::before {
+        content: "Total: ";
+        font-weight: normal;
+    }
+
+    .itemTotal::before {
+        content: "Total: ";
+        font-weight: normal;
+    }
+
+    .paymentMethod label {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .paymentDetails .formRow {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+
+    .breadCrumb {
+        margin-top: 70px;
+        padding: 15px 0;
+    }
+
+    .formGroup input,
+    .formGroup select,
+    .formGroup textarea {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .termsCheckbox {
+        align-items: flex-start;
+    }
+
+    .popupCard {
+        max-width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .sectionTitle::after {
+        height: 3px;
+    }
+
+    .billingForm h3,
+    .orderSummary h3 {
+        font-size: 1.2rem;
+    }
+
+    .summaryRow.total {
+        font-size: 1rem;
+    }
+
+    .paymentMethod label i {
+        font-size: 1rem;
+    }
+
+    .footerContent {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .popupCard {
+        padding: 15px;
+    }
+
+    .popupIcon {
+        font-size: 40px;
+    }
+
+    .popupCard h3 {
+        font-size: 18px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}

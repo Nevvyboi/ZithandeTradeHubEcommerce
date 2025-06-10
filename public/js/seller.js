@@ -43,78 +43,84 @@ function getCookie(name) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const userEmail = getCookie("userEmail") || "guest@example.com";
-  const accountType = getCookie("accountType");
-
-  if (!userEmail || userEmail === "guest@example.com" || accountType !== "seller") {
-    window.location.href = '/home.html';
-    return;
-  }
-
-  const decodedEmail = decodeURIComponent(userEmail);
-  fetch(`/api/seller-products/${encodeURIComponent(userEmail)}`)
-        .then(res => res.json())
-        .then(products => {
-            // Safety fallback
-            if (!Array.isArray(products)) {
-                console.error("Invalid products data:", products);
-                products = [];
-            }
-
-            loadSellerProducts(products);
-        })
-        .catch(err => {
-            console.error("Error fetching seller products:", err);
-            loadSellerProducts([]);
-        });
-  fetch(`/api/sellerStats/${encodeURIComponent(userEmail)}`)
-        .then(res => res.json())
-        .then(data => {
-            document.querySelector('.profileName').textContent = data.fullName;
-            document.querySelector('.statValue').textContent = data.productCount;
-        })
-        .catch(err => {
-            console.error("Error loading seller stats:", err);
-            alert("Could not load seller data.");
-        });
-});
+    const userEmail = getCookie("userEmail") || "guest@example.com";
+    const accountType = getCookie("accountType");
+  
+    if (!userEmail || userEmail === "guest@example.com" || accountType !== "seller") {
+      window.location.href = '/home.html';
+      return;
+    }
+  
+    const decodedEmail = decodeURIComponent(userEmail);
+  
+    fetch(`/api/seller-products/${encodeURIComponent(userEmail)}`)
+      .then(res => res.json())
+      .then(products => {
+        if (!Array.isArray(products)) {
+          console.error("Invalid products data:", products);
+          products = [];
+        }
+        loadSellerProducts(products);
+      })
+      .catch(err => {
+        console.error("Error fetching seller products:", err);
+        loadSellerProducts([]);
+      });
+  
+    fetch(`/api/sellerStats/${encodeURIComponent(userEmail)}`)
+      .then(res => res.json())
+      .then(stats => {
+        console.log(stats);
+    
+        const profileNameEl = document.getElementById('profileName');
+        const statValueEl = document.getElementById('statValue');
+        const totalRevenueEl = document.getElementById('totalRevenue');
+        const totalReviewsEl = document.getElementById('totalReviews');
+    
+        if (profileNameEl) profileNameEl.textContent = stats.fullName;
+        if (statValueEl) statValueEl.textContent = stats.productCount;
+        if (totalRevenueEl) totalRevenueEl.textContent = stats.totalRevenue;
+        if (totalReviewsEl) totalReviewsEl.textContent = stats.totalReviews;
+      })
+      .catch(err => console.error("Error loading seller stats:", err));
+  });
 
 function loadSellerProducts(products) {
-  const container = document.querySelector('.sellerProductsGrid');
-  container.innerHTML = '';
-
-  if (!products.length) {
-      container.innerHTML = `<p>No products found for this seller.</p>`;
-      return;
-  }
-
-  products.forEach(product => {
-      const card = document.createElement('div');
-      card.className = 'sellerProductCard';
-
-      card.innerHTML = `
-          <div class="sellerProductImage">
-              <img src="${product.image}" alt="${product.name}">
-          </div>
-          <div class="sellerProductInfo">
-              <h4 class="productName">${product.name}</h4>
-              <div class="productPrice">R${product.price}</div>
-              <div class="productSales">${product.sales} sales</div>
-              <div class="productRating">${product.rating}★</div>
-              <button class="deleteProductBtn" data-id="${product.id}">Delete</button>
-          </div>
-      `;
-      container.appendChild(card);
-  });
-
-  document.querySelectorAll('.deleteProductBtn').forEach(button => {
-      button.addEventListener('click', function () {
-          const productId = this.dataset.id;
-          if (confirm("Are you sure you want to delete this product?")) {
-              deleteProduct(productId);
-          }
-      });
-  });
+    const container = document.querySelector('.sellerProductsGrid');
+    container.innerHTML = '';
+  
+    if (!products.length) {
+        container.innerHTML = `<p>No products found for this seller.</p>`;
+        return;
+    }
+  
+    products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'sellerProductCard';
+  
+        card.innerHTML = `
+            <div class="sellerProductImage">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="sellerProductInfo">
+                <h4 class="productName">${product.name}</h4>
+                <div class="productPrice">R${product.price}</div>
+                <div class="productSales">${product.sales} sales</div>
+                <div class="productRating">${product.rating}★</div>
+                <button class="deleteProductBtn" data-id="${product.id}">Delete</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+  
+    document.querySelectorAll('.deleteProductBtn').forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.dataset.id;
+            if (confirm("Are you sure you want to delete this product?")) {
+                deleteProduct(productId);
+            }
+        });
+    });
 }
 
 function deleteProduct(productId) {

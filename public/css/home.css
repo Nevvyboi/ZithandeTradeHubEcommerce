@@ -915,3 +915,322 @@ footer {
   font-weight: 600;
   z-index: 2;
 }
+
+/* ... (keep all existing CSS above the media queries) ... */
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .logo i {
+        font-size: 1.7rem;
+        margin-right: 8px;
+    }
+    
+    .navIcons {
+        gap: 10px;
+    }
+    
+    .navIcons a {
+        font-size: 1rem;
+    }
+    
+    .wishlistCount,
+    .cartCount {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+        top: -8px;
+        right: -8px;
+    }
+    
+    .hero {
+        padding: 50px 0;
+        margin-top: 60px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .heroBtns .btn {
+        min-width: 160px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+    
+    .sectionTitle::after {
+        height: 3px;
+        bottom: -8px;
+    }
+    
+    .categories {
+        padding: 40px 0;
+    }
+    
+    .categoriesGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .categoryCard {
+        padding: 15px 10px;
+    }
+    
+    .categoryIcon {
+        font-size: 1.5rem;
+    }
+    
+    .categoryTitle {
+        font-size: 0.9rem;
+    }
+    
+    .categoryCount {
+        font-size: 0.75rem;
+    }
+    
+    .testimonials {
+        padding: 40px 0;
+    }
+    
+    .testimonialCard {
+        min-width: 220px;
+        padding: 15px;
+    }
+    
+    .testimonialText {
+        font-size: 0.85rem;
+    }
+    
+    .authorImg {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .authorInfo h4 {
+        font-size: 0.9rem;
+    }
+    
+    .authorInfo p {
+        font-size: 0.8rem;
+    }
+    
+    .rating {
+        font-size: 0.8rem;
+    }
+    
+    .productsGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .productCard {
+        max-width: 100%;
+    }
+    
+    .imageWrapper {
+        height: 180px;
+    }
+    
+    .productName {
+        font-size: 1rem;
+    }
+    
+    .newsletter {
+        padding: 30px 0;
+    }
+    
+    .newsletter h2 {
+        font-size: 1.4rem;
+    }
+    
+    .newsletter p {
+        font-size: 0.9rem;
+    }
+    
+    .newsletterInput,
+    .newsletterBtn {
+        padding: 10px 15px;
+    }
+    
+    .footerContent {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .footerColumn {
+        text-align: center;
+    }
+    
+    .footerColumn h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .socialIcons {
+        justify-content: center;
+    }
+    
+    .popupCard {
+        max-width: 280px;
+        padding: 20px;
+    }
+    
+    .popupIcon {
+        font-size: 45px;
+    }
+    
+    .popupCard h3 {
+        font-size: 1.1rem;
+    }
+    
+    .popupActionBtn {
+        padding: 10px 20px;
+    }
+    
+    /* Mobile menu enhancements */
+    .hamburger {
+        display: block;
+        z-index: 1001;
+    }
+    
+    .navLinks {
+        top: 70px;
+        height: calc(100vh - 70px);
+        justify-content: center;
+    }
+    
+    .navLinks li {
+        margin: 20px 0;
+    }
+    
+    .navLinks a {
+        font-size: 1.2rem;
+    }
+    
+    /* Ensure buttons are touch-friendly */
+    .btn, .actionIcons button {
+        min-height: 44px; /* Apple's recommended minimum touch target size */
+    }
+    
+    /* Product grid adjustments */
+    .productsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Form elements */
+    input, textarea, select {
+        font-size: 16px; /* Prevent iOS zoom on focus */
+    }
+}
+
+/* Very small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero p {
+        font-size: 0.85rem;
+    }
+    
+    .categoriesGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .productsGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonialCard {
+        min-width: 200px;
+    }
+    
+    .popupCard {
+        max-width: 90%;
+    }
+}
+
+/* Orientation-specific adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .navLinks {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow-y: auto;
+    }
+    
+    .hero {
+        padding: 40px 0;
+    }
+    
+    .productsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+    :focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+    
+    /* Increase tap targets */
+    a, button, [role="button"] {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Prevent text size adjustment */
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+}
+
+/* High-density displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo, .sectionTitle {
+        font-weight: 600; /* Slightly heavier font for retina */
+    }
+    
+    .btn {
+        border-width: 1.5px; /* Thicker borders for high DPI */
+    }
+}
+
+/* Print styles */
+@media print {
+    header, footer, .hero, .newsletter {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+}

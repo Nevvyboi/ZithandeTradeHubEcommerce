@@ -119,13 +119,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value.trim();
 
-    // Hardcoded admin check
     if (email === "zithande@admin.com" && password === "123") {
         window.location.href = "admin.html";
         return;
     }
 
-    // Regular login flow
     fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

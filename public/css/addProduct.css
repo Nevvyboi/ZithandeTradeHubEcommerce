@@ -306,17 +306,100 @@ textarea.formControl {
     border-top: 1px solid var(--primary-dark);
 }
 
-/* Responsive */
+@media (max-width: 992px) {
+    .previewGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .navbar {
+        padding: 15px 0;
+    }
+
+    .pageHeader {
+        padding: 40px 0;
+        margin-top: 60px;
+    }
+
+    .pageHeader h1 {
+        font-size: 2rem;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+
+    .formContainer {
+        padding: 20px;
+    }
+
     .formGrid {
         grid-template-columns: 1fr;
     }
-    
+
     .formGroup.fullWidth {
         grid-column: span 1;
     }
-    
+
     .previewGrid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .formFooter {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .pageHeader {
+        padding: 30px 0;
+        margin-top: 50px;
+    }
+
+    .pageHeader h1 {
+        font-size: 1.8rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .sectionTitle::after {
+        height: 3px;
+    }
+
+    .formControl {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .imageUpload {
+        padding: 20px;
+    }
+
+    .imageUploadIcon {
+        font-size: 36px;
+    }
+
+    .previewGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .previewItem {
+        height: 150px;
+    }
+
+    .formLabel {
+        font-size: 0.9rem;
     }
 }

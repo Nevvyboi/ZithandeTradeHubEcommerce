@@ -399,3 +399,318 @@ header {
         flex-direction: column;
     }
 }
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .authContainer {
+        margin-top: 90px;
+    }
+}
+
+@media (max-width: 992px) {
+    .authContainer {
+        max-width: 400px;
+    }
+    
+    .authHeader h1 {
+        font-size: 22px;
+    }
+    
+    .inputGroup input {
+        padding: 14px 14px 14px 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .navLinks {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        transition: left 0.3s ease;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navLinks.active {
+        left: 0;
+    }
+    
+    .navLinks li {
+        margin: 15px 0;
+    }
+    
+    .navIcons {
+        gap: 15px;
+    }
+    
+    .authContainer {
+        margin-top: 80px;
+    }
+    
+    .authHeader {
+        padding: 25px 20px;
+    }
+    
+    .authForms {
+        padding: 25px;
+    }
+    
+    .authBtn {
+        padding: 14px;
+    }
+    
+    .typeOption .optionContent {
+        padding: 12px;
+    }
+    
+    .typeOption .optionContent i {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+    
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .logo i {
+        font-size: 1.7rem;
+        margin-right: 8px;
+    }
+    
+    .navIcons {
+        gap: 10px;
+    }
+    
+    .navIcons a {
+        font-size: 1rem;
+    }
+    
+    .authContainer {
+        margin-top: 70px;
+        border-radius: 12px;
+    }
+    
+    .authHeader {
+        padding: 20px 15px;
+    }
+    
+    .authHeader h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .authToggle button {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    .authForms {
+        padding: 20px;
+    }
+    
+    .inputGroup input {
+        padding: 12px 12px 12px 40px;
+        font-size: 15px;
+    }
+    
+    .inputGroup i {
+        left: 12px;
+        font-size: 14px;
+    }
+    
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .authBtn {
+        padding: 12px;
+        font-size: 15px;
+    }
+    
+    .accountType h3 {
+        font-size: 15px;
+    }
+    
+    .typeOption .optionContent span {
+        font-size: 13px;
+    }
+    
+    .terms {
+        font-size: 11px;
+    }
+    
+    .popupContainer {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .authContainer {
+        margin-top: 60px;
+    }
+    
+    .authHeader {
+        padding: 18px 12px;
+    }
+    
+    .authHeader h1 {
+        font-size: 18px;
+    }
+    
+    .authToggle {
+        padding: 3px;
+    }
+    
+    .authToggle button {
+        padding: 6px;
+        font-size: 13px;
+    }
+    
+    .inputGroup input {
+        padding: 10px 10px 10px 36px;
+        font-size: 14px;
+    }
+    
+    .inputGroup i {
+        left: 10px;
+        font-size: 13px;
+    }
+    
+    .authBtn {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .typeOption .optionContent {
+        padding: 10px;
+    }
+    
+    .typeOption .optionContent i {
+        font-size: 20px;
+    }
+    
+    .popupContainer {
+        min-width: 280px;
+        padding: 18px;
+    }
+    
+    #popupCloseBtn {
+        padding: 8px 20px;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .navLinks {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow-y: auto;
+    }
+    
+    .authContainer {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    :focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+
+    a, button, [role="button"], input[type="checkbox"] + label {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    input, textarea, select, .authBtn {
+        min-height: 44px;
+    }
+
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    .options label {
+        padding: 5px 0;
+    }
+    
+    .typeOption .optionContent {
+        min-height: 80px;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo {
+        font-weight: 600;
+    }
+    
+    .authBtn {
+        border-width: 1.5px;
+    }
+}
+
+@media print {
+    header, .authHeader {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+        padding: 0;
+        align-items: flex-start;
+    }
+    
+    .authContainer {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+    }
+    
+    .authForms {
+        padding: 20px !important;
+    }
+    
+    .inputGroup input {
+        background-color: transparent;
+        border: 1px solid #999;
+    }
+    
+    .authBtn {
+        background: none !important;
+        color: black !important;
+        border: 1px solid black;
+    }
+    
+    .terms {
+        color: black;
+    }
+}
