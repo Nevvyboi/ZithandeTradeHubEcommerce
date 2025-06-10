@@ -7,6 +7,28 @@ if (hamburger && navLinks) {
     });
 }
 
+const wishlistBtn = document.getElementById("wishlistBtn");
+if (wishlistBtn) {
+    wishlistBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const loggedIn = getCookie('loggedIn');
+        if (loggedIn !== 'true') {
+            const loginPopup = document.getElementById("loginRequiredPopup");
+            if (loginPopup) loginPopup.style.display = "flex";
+            return;
+        }
+
+        const wishlistCount = parseInt(document.querySelector(".wishlistCount")?.textContent || "0");
+        if (wishlistCount === 0) {
+            const popup = document.getElementById("emptyWishlistPopup");
+            if (popup) popup.style.display = "flex";
+        } else {
+            window.location.href = "profile.html#wishlist";
+        }
+    });
+}
+
 const cartBtn = document.getElementById("cartBtn");
 if (cartBtn) {
     cartBtn.addEventListener("click", function(e) {

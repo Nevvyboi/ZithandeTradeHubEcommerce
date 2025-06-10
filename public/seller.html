@@ -47,15 +47,8 @@
             <div class="profileSection">
                 <div class="profileCard">
                     <img src="/images/userProfilePfp.png" alt="profile" class="profileAvatar" width="100" height="100">
-                    <h1 class="profileName">Sarah Johnson</h1>
+                    <h1 class="profileName" id="profileName">Name Surname</h1>
                     <p class="profileRole">Seller</p>
-                    
-                    <div class="profileStats">
-                        <div class="statItem">
-                            <div class="statValue">127</div>
-                            <div class="statLabel">Products</div>
-                        </div>
-                    </div>
                     
                     <button class="btn btnPrimary" onclick="openModal()" style="width: 100%;">Edit Profile</button>
                     
@@ -89,21 +82,21 @@
                     <div class="statsContainer">
                         <div class="statCard">
                             <div class="statIcon">
+                                <i class="fas fa-solid fa-barcode"></i>
+                            </div>
+                            <div class="statText">
+                                <h3><span id="statValue">0</span></h3>
+                                <p>Products</p>
+                            </div>
+                        </div>
+
+                        <div class="statCard">
+                            <div class="statIcon">
                                 <i class="fas fa-shopping-bag"></i>
                             </div>
                             <div class="statText">
-                                <h3>R12,450</h3>
+                                <h3>R<span id="totalRevenue">0</span></h3>
                                 <p>Total Revenue</p>
-                            </div>
-                        </div>
-                        
-                        <div class="statCard">
-                            <div class="statIcon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="statText">
-                                <h3>+24%</h3>
-                                <p>Sales Growth</p>
                             </div>
                         </div>
                         
@@ -112,8 +105,8 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <div class="statText">
-                                <h3>96%</h3>
-                                <p>Positive Reviews</p>
+                                <h3><span id="totalReviews">0</span></h3>
+                                <p>Reviews</p>
                             </div>
                         </div>
                     </div>
@@ -163,7 +156,7 @@
                     <div class="footerColumn">
                         <h3>Contact Us</h3>
                         <div class="footerContact">
-                            <p><i class="fas fa-map-marker-alt"></i> 493 Opstal Street, Die Wilgers, Pretoria 0184</p>
+                            <p><i class="fas fa-map-marker-alt"></i> 22 Umgazi Rd, Ashlea Gardens, Pretoria, 0081</p>
                             <p><i class="fas fa-phone"></i> 076 060 1488</p>
                             <p><i class="fas fa-envelope"></i> support@zithandetradehub.com</p>
                             <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 4:30PM</p>

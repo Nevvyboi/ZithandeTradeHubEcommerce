@@ -605,3 +605,164 @@ footer {
 .sellerProductInfo {
     margin-top: 10px;
 }
+
+.deleteProductBtn {
+    background-color: #ff4d4f;  
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.deleteProductBtn:hover {
+    background-color: #e04343;
+    transform: scale(1.05);
+}
+
+.deleteProductBtn:active {
+    transform: scale(0.98);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .statsContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .sellerProductsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .profileSection {
+        flex-direction: column;
+    }
+
+    .profileCard {
+        width: 100%;
+    }
+
+    .statsContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .productsGrid,
+    .sellerProductsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .productImage {
+        height: 120px;
+    }
+
+    .sellerProductImage img {
+        height: 140px;
+    }
+
+    .profileStats {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .statItem {
+        margin-bottom: 15px;
+    }
+
+    .cardHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .breadCrumb {
+        margin-top: 70px;
+        padding: 15px 0;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .modalContent {
+        padding: 20px;
+    }
+
+    .profileAvatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profileName {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .productsGrid,
+    .sellerProductsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .productCard,
+    .sellerProductCard {
+        max-width: 100%;
+    }
+
+    .profileAvatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .statText h3 {
+        font-size: 20px;
+    }
+
+    .statIcon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .footerContent {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .socialLinks {
+        justify-content: flex-start;
+    }
+
+    .productTitle {
+        white-space: normal;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .deleteProductBtn {
+        width: 100%;
+    }
+
+    .breadCrumbList {
+        flex-wrap: wrap;
+    }
+
+    .breadCrumbItem {
+        font-size: 0.8rem;
+    }
+}

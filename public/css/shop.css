@@ -765,3 +765,403 @@ footer {
     flex: 1;
     padding: 20px;
 }
+
+/* ... (keep all existing CSS above the media queries) ... */
+
+/* Responsive Media Queries */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .shopContent {
+        gap: 20px;
+    }
+    
+    .shopSidebar {
+        width: 220px;
+    }
+    
+    .productsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 15px;
+    }
+    
+    .imageWrapper {
+        height: 220px;
+    }
+}
+
+@media (max-width: 992px) {
+    .shopHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .shopTools {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .shopContent {
+        flex-direction: column;
+    }
+    
+    .shopSidebar {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .sidebarWidget {
+        margin-bottom: 0;
+    }
+    
+    .productsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .imageWrapper {
+        height: 200px;
+    }
+    
+    /* List view adjustments */
+    .productsGrid.listView .productCard {
+        padding: 12px 15px;
+    }
+    
+    .productsGrid.listView .imageWrapper {
+        flex: 0 0 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .navLinks {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        transition: left 0.3s ease;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navLinks.active {
+        left: 0;
+    }
+    
+    .navLinks li {
+        margin: 15px 0;
+    }
+    
+    .navIcons {
+        gap: 15px;
+    }
+    
+    .navIcons a {
+        margin-left: 0;
+        font-size: 1.1rem;
+    }
+    
+    .breadCrumb {
+        margin-top: 70px;
+        padding: 15px 0;
+    }
+    
+    .shopSidebar {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .productsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    
+    .imageWrapper {
+        height: 180px;
+    }
+    
+    .productName {
+        font-size: 16px;
+    }
+    
+    .priceRow {
+        font-size: 15px;
+    }
+    
+    /* List view adjustments */
+    .productsGrid.listView .productCard {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    
+    .productsGrid.listView .imageWrapper {
+        flex: 0 0 100%;
+        width: 100%;
+        height: 160px;
+        margin-bottom: 10px;
+    }
+    
+    .actionIcons {
+        opacity: 1; /* Always show on mobile */
+    }
+    
+    /* Shop tools adjustments */
+    .shopTools {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .sortBy {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .sortBy select {
+        width: 60%;
+    }
+    
+    .viewOptions {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .logo i {
+        font-size: 1.7rem;
+        margin-right: 8px;
+    }
+    
+    .navIcons {
+        gap: 10px;
+    }
+    
+    .navIcons a {
+        font-size: 1rem;
+    }
+    
+    .wishlistCount,
+    .cartCount {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+        top: -8px;
+        right: -8px;
+    }
+    
+    .breadCrumbItem {
+        font-size: 0.8rem;
+    }
+    
+    .productsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .imageWrapper {
+        height: 150px;
+    }
+    
+    .productContent {
+        padding: 12px;
+    }
+    
+    .productName {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    
+    .priceRow {
+        font-size: 14px;
+    }
+    
+    .actionIcons button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .badge {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
+    
+    .sidebarWidget {
+        padding: 15px;
+    }
+    
+    .sidebarWidget h3 {
+        font-size: 1.1rem;
+    }
+    
+    .categoryList a {
+        font-size: 0.9rem;
+    }
+    
+    /* Popup adjustments */
+    .popupCard {
+        max-width: 280px;
+        padding: 20px;
+    }
+    
+    .popupIcon {
+        font-size: 50px;
+    }
+    
+    .popupCard h3 {
+        font-size: 1.1rem;
+    }
+    
+    .popupCard p {
+        font-size: 0.9rem;
+    }
+    
+    .popupActionBtn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .productsGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .imageWrapper {
+        height: 200px;
+    }
+    
+    .shopTools {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .sortBy {
+        width: 100%;
+    }
+    
+    .sortBy select {
+        width: 100%;
+    }
+    
+    .viewOptions {
+        align-self: flex-start;
+    }
+    
+    /* List view adjustments */
+    .productsGrid.listView .productCard {
+        flex-direction: column;
+    }
+    
+    .productsGrid.listView .imageWrapper {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Orientation-specific adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .navLinks {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow-y: auto;
+    }
+    
+    .productsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+    :focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+    
+    /* Increase tap targets */
+    a, button, [role="button"] {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Prevent text size adjustment */
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    /* Make form elements more touch-friendly */
+    select, .viewBtn {
+        min-height: 44px;
+    }
+}
+
+/* High-density displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo, .sectionTitle {
+        font-weight: 600;
+    }
+    
+    .btn {
+        border-width: 1.5px;
+    }
+}
+
+/* Print styles */
+@media print {
+    header, footer, .breadCrumb, .shopTools, .shopSidebar {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .productsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10mm;
+    }
+    
+    .productCard {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .actionIcons {
+        display: none;
+    }
+}

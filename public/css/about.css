@@ -561,3 +561,395 @@ footer {
     80% { transform: scale(1.05); }
     100% { transform: scale(1); opacity: 1; }
 }
+
+/* ... (keep all existing CSS above the media queries) ... */
+
+/* Responsive Media Queries */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .aboutContent {
+        gap: 30px;
+    }
+    
+    .valuesGrid, 
+    .teamGrid {
+        gap: 25px;
+    }
+    
+    .statItem {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 992px) {
+    .pageHeader {
+        padding: 50px 0;
+        margin-top: 70px;
+    }
+    
+    .pageHeader h1 {
+        font-size: 2.2rem;
+    }
+    
+    .aboutContent {
+        flex-direction: column;
+    }
+    
+    .aboutImage {
+        order: -1;
+    }
+    
+    .valueCard,
+    .teamMember {
+        padding: 25px;
+    }
+    
+    .memberImage {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .statsSection {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .navLinks {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        transition: left 0.3s ease;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navLinks.active {
+        left: 0;
+    }
+    
+    .navLinks li {
+        margin: 15px 0;
+    }
+    
+    .navIcons {
+        gap: 15px;
+    }
+    
+    .navIcons a {
+        margin-left: 0;
+        font-size: 1.1rem;
+    }
+    
+    .pageHeader {
+        padding: 40px 0;
+        margin-top: 70px;
+    }
+    
+    .pageHeader h1 {
+        font-size: 2rem;
+    }
+    
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+    
+    .sectionTitle::after {
+        height: 3px;
+        bottom: -8px;
+    }
+    
+    .about {
+        padding: 50px 0;
+    }
+    
+    .valuesGrid,
+    .teamGrid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    
+    .valueIcon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .memberImage {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .statsSection {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .statItem {
+        padding: 20px;
+    }
+    
+    .statNumber {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .logo i {
+        font-size: 1.7rem;
+        margin-right: 8px;
+    }
+    
+    .navIcons {
+        gap: 10px;
+    }
+    
+    .navIcons a {
+        font-size: 1rem;
+    }
+    
+    .wishlistCount,
+    .cartCount {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+        top: -8px;
+        right: -8px;
+    }
+    
+    .pageHeader {
+        padding: 30px 0;
+        margin-top: 60px;
+    }
+    
+    .pageHeader h1 {
+        font-size: 1.8rem;
+    }
+    
+    .pageHeader p {
+        font-size: 0.9rem;
+    }
+    
+    .sectionTitle {
+        font-size: 1.6rem;
+    }
+    
+    .about {
+        padding: 40px 0;
+    }
+    
+    .aboutContent {
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+    
+    .valuesGrid,
+    .teamGrid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .valueCard,
+    .teamMember {
+        padding: 20px;
+    }
+    
+    .valueCard h3,
+    .teamMember h3 {
+        font-size: 1.1rem;
+    }
+    
+    .bio {
+        font-size: 0.85rem;
+    }
+    
+    .memberImage {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+    }
+    
+    .position {
+        font-size: 0.9rem;
+    }
+    
+    .footerContent {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footerColumn {
+        text-align: center;
+    }
+    
+    .footerColumn h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .socialIcons {
+        justify-content: center;
+    }
+    
+    /* Popup adjustments */
+    .popupCard {
+        max-width: 280px;
+        padding: 20px;
+    }
+    
+    .popupIcon {
+        font-size: 50px;
+    }
+    
+    .popupCard h3 {
+        font-size: 1.1rem;
+    }
+    
+    .popupCard p {
+        font-size: 0.9rem;
+    }
+    
+    .popupActionBtn {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .pageHeader h1 {
+        font-size: 1.6rem;
+    }
+    
+    .sectionTitle {
+        font-size: 1.4rem;
+    }
+    
+    .valueIcon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .statItem {
+        padding: 15px;
+    }
+    
+    .statNumber {
+        font-size: 1.8rem;
+    }
+    
+    .statLabel {
+        font-size: 0.9rem;
+    }
+}
+
+/* Orientation-specific adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .navLinks {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow-y: auto;
+    }
+    
+    .valuesGrid,
+    .teamGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+    :focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+    
+    /* Increase tap targets */
+    a, button, [role="button"] {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Prevent text size adjustment */
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+}
+
+/* High-density displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo, .sectionTitle {
+        font-weight: 600;
+    }
+    
+    .valueIcon,
+    .memberImage {
+        border-width: 2px;
+    }
+}
+
+/* Print styles */
+@media print {
+    header, footer {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .aboutContent {
+        flex-direction: column;
+    }
+    
+    .valuesGrid,
+    .teamGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10mm;
+    }
+    
+    .valueCard,
+    .teamMember {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .pageHeader {
+        background: none !important;
+        color: black !important;
+        padding: 20px 0 !important;
+    }
+}

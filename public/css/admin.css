@@ -560,3 +560,117 @@ button.deleteOrderBtn:hover {
 .deleteBtn:hover {
     background-color: #c0392b;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .navbar {
+        padding: 15px 0;
+    }
+
+    .navLinks {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    .navLinks.active {
+        display: flex;
+    }
+
+    .navLinks li {
+        margin: 10px 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .accountWrapper {
+        flex-direction: column;
+    }
+
+    .accountSidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .accountContent {
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .ordersTable th, 
+    .ordersTable td,
+    .adminTable th,
+    .adminTable td {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .ordersTable {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .breadCrumbList {
+        flex-wrap: wrap;
+    }
+
+    .breadCrumbItem {
+        font-size: 0.8rem;
+    }
+
+    .accountMenu a {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .cardValue {
+        font-size: 1.5rem;
+    }
+
+    .status {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+
+    .deleteBtn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+}

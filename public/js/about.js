@@ -118,7 +118,7 @@ document.getElementById('profileLink').addEventListener('click', function (e) {
 });
 
 function updateCounts(userEmail) {
-  fetch(`http://localhost:3000/api/wishlist/count/${encodeURIComponent(userEmail)}`)
+  fetch(`/api/wishlist/count/${encodeURIComponent(userEmail)}`)
       .then(res => res.json())
       .then(data => {
           const wishlistCountElement = document.querySelector('.wishlistCount');
@@ -130,7 +130,7 @@ function updateCounts(userEmail) {
           console.error('Error updating wishlist count:', err);
       });
 
-  fetch(`http://localhost:3000/api/cart/count/${encodeURIComponent(userEmail)}`)
+  fetch(`/api/cart/count/${encodeURIComponent(userEmail)}`)
       .then(res => res.json())
       .then(data => {
           const cartCountElement = document.querySelector('.cartCount');

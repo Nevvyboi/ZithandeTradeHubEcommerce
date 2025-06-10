@@ -68,7 +68,7 @@ document.getElementById('logoutBtn')?.addEventListener('click', function () {
 });
 
 function loadUserProfile(userEmail) {
-  fetch(`http://localhost:3000/api/user-profile/${encodeURIComponent(userEmail)}`)
+  fetch(`/api/user-profile/${encodeURIComponent(userEmail)}`)
     .then(res => {
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return res.json();
@@ -120,7 +120,7 @@ document.querySelectorAll('.dashboardCard a').forEach(btn => {
 });
 
 function loadWishlist(userEmail) {
-  fetch(`http://localhost:3000/api/wishlist/items/${encodeURIComponent(userEmail)}`)
+  fetch(`/api/wishlist/items/${encodeURIComponent(userEmail)}`)
     .then(res => res.json())
     .then(data => {
       const wishlistContainer = document.querySelector('.wishlistItems');
@@ -176,7 +176,7 @@ function loadWishlist(userEmail) {
 }
 
 function addToCart(userEmail, productId) {
-  fetch('http://localhost:3000/api/cart/toggle', {
+  fetch('/api/cart/toggle', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ userEmail, productId })
@@ -191,7 +191,7 @@ function addToCart(userEmail, productId) {
 }
 
 function removeFromWishlist(userEmail, productId, wishlistItemElement) {
-  fetch('http://localhost:3000/api/wishlist/toggle', {
+  fetch('/api/wishlist/toggle', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ userEmail, productId })
@@ -208,7 +208,7 @@ function removeFromWishlist(userEmail, productId, wishlistItemElement) {
 
 
 function updateCounts(userEmail) {
-  fetch(`http://localhost:3000/api/wishlist/count/${encodeURIComponent(userEmail)}`)
+  fetch(`/api/wishlist/count/${encodeURIComponent(userEmail)}`)
     .then(res => res.json())
     .then(data => {
       const wishlistCountElement = document.querySelector('.wishlistCount');
@@ -218,7 +218,7 @@ function updateCounts(userEmail) {
     })
     .catch(err => console.error('Error updating wishlist count:', err));
 
-  fetch(`http://localhost:3000/api/cart/count/${encodeURIComponent(userEmail)}`)
+  fetch(`/api/cart/count/${encodeURIComponent(userEmail)}`)
     .then(res => res.json())
     .then(data => {
       const cartCountElement = document.querySelector('.cartCount');
@@ -429,7 +429,7 @@ document.querySelector('.accountForm').addEventListener('submit', async (e) => {
       return;
   }
 
-  const res = await fetch('http://localhost/php/updatePassword.php', {
+  const res = await fetch('/php/updatePassword.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email: decodedEmail, newPassword })

@@ -42,32 +42,18 @@ function getCookie(name) {
     return null;
 }
 
-document.getElementById('productForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-
-    const response = await fetch('/upload-product', {
-        method: 'POST',
-        body: formData
-    });
-
-    const result = await response.text();
-    alert(result);
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     const userEmail = getCookie("userEmail");
     const sellerIdInput = document.getElementById('sellerId');
     const form = document.getElementById('productForm');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Disable button until sellerId is loaded
     submitBtn.disabled = true;
 
-    fetch(`http://localhost:3000/api/getUserId/${encodeURIComponent(userEmail)}`)
+    fetch(`/api/getUserId/${encodeURIComponent(userEmail)}`)
     .then(res => res.json())
     .then(data => {
-        console.log("✅ Seller ID fetched:", data.id); // <-- ADD THIS LINE
+        console.log("✅ Seller ID fetched:", data.id); 
         sellerIdInput.value = data.id;
         submitBtn.disabled = false;
     })
@@ -82,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
         const productName = document.getElementById('productName').value.trim();
     
-        // Check if product name exists before submitting
         const checkResponse = await fetch(`/api/checkProductName/${encodeURIComponent(productName)}`);
         const checkData = await checkResponse.json();
     
@@ -91,15 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
     
-        // Proceed with upload if no duplicate
         const formData = new FormData(form);
         const response = await fetch('/upload-product', {
             method: 'POST',
             body: formData
         });
     
-        window.location.href = '/seller.html';
-    });
+        if (response.ok) {
+            window.location.href = '/seller.html';
+        } else {
+            alert("Error uploading product");
+        }
+    });    
     
 });
 

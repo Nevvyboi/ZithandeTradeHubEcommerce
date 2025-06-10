@@ -181,9 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (userEmail !== "guest@example.com") {
         Promise.all([
-            fetch('http://localhost:3000/api/featured-products').then(res => res.json()),
-            fetch(`http://localhost:3000/api/wishlist/items/${encodeURIComponent(userEmail)}`).then(res => res.json()),
-            fetch(`http://localhost:3000/api/cart/items/${encodeURIComponent(userEmail)}`).then(res => res.json())
+            fetch('/api/featured-products').then(res => res.json()),
+            fetch(`/api/wishlist/items/${encodeURIComponent(userEmail)}`).then(res => res.json()),
+            fetch(`/api/cart/items/${encodeURIComponent(userEmail)}`).then(res => res.json())
         ])
         .then(([products, wishlistData, cartData]) => {
             console.log(wishlistData, cartData);
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Error loading products:", err);
         });
     } else {
-        fetch('http://localhost:3000/api/featured-products')
+        fetch('/api/featured-products')
             .then(res => res.json())
             .then(products => {
                 loadProducts(products, userEmail, [], []);
@@ -205,10 +205,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loadCategoryCounts();
+    updateCounts();
 });
 
 function loadCategoryCounts() {
-    fetch('http://localhost:3000/api/categories/counts')
+    fetch('/api/categories/counts')
         .then(res => res.json())
         .then(data => {
 
@@ -322,7 +323,7 @@ function setupDelegation(userEmail) {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/wishlist/toggle', {
+                const response = await fetch('/api/wishlist/toggle', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ userEmail, productId: parseInt(productId) })
@@ -366,7 +367,7 @@ function setupDelegation(userEmail) {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/cart/toggle', {
+                const response = await fetch('/api/cart/toggle', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ userEmail, productId: parseInt(productId) })
@@ -394,7 +395,7 @@ function setupDelegation(userEmail) {
 }
 
 function updateCounts(userEmail) {
-    fetch(`http://localhost:3000/api/wishlist/count/${encodeURIComponent(userEmail)}`)
+    fetch(`/api/wishlist/count/${encodeURIComponent(userEmail)}`)
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             return res.json();
@@ -409,7 +410,7 @@ function updateCounts(userEmail) {
             console.error('Error updating wishlist count:', err);
         });
 
-    fetch(`http://localhost:3000/api/cart/count/${encodeURIComponent(userEmail)}`)
+    fetch(`/api/cart/count/${encodeURIComponent(userEmail)}`)
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             return res.json();
