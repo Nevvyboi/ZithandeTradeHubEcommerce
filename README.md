@@ -49,11 +49,12 @@
 
 ---
 
-## 🖼️ Screenshots
+## 🖼️ Video
 
-| 📱 Homepage | 🧾 Product Grid | ❤️ Wishlist View |
-|------------|-----------------|------------------|
-| ![](screenshots/home.png) | ![](screenshots/shop.png) | ![](screenshots/wishlist.png) |
+
+
+https://github.com/user-attachments/assets/322279d4-76c2-4fbe-879f-17d1e7b6b780
+
 
 ---
 
