@@ -138,3 +138,58 @@ function updateCounts(userEmail) {
         updateCounts(userEmail);
     }
 });
+
+document.getElementById('trackingForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const orderNumber = document.getElementById('orderNumber').value.trim();
+    const email = document.getElementById('emailAddress').value.trim();
+    const resultDiv = document.getElementById('trackingResult');
+
+    resultDiv.innerHTML = "Loading tracking information...";
+
+    // Replace this with your real backend endpoint
+    fetch(`/api/track-order?orderNumber=${encodeURIComponent(orderNumber)}&email=${encodeURIComponent(email)}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Order not found");
+            return res.json();
+        })
+        .then(data => {
+            resultDiv.innerHTML = `
+                <h3>Order Status: ${data.status}</h3>
+                <p><strong>Order ID:</strong> ${data.orderId}</p>
+                <p><strong>Items:</strong></p>
+                <ul>
+                    ${data.items.map(item => `<li>${item.name} x ${item.quantity}</li>`).join("")}
+                </ul>
+                <p><strong>Estimated Delivery:</strong> ${data.estimatedDelivery}</p>
+            `;
+        })
+        .catch(err => {
+            showTrackingPopup("Order Not Found", "We couldn’t find an order matching that number and email.", "fa-times-circle");
+});
+
+});
+
+// Reusable popup handler
+function showTrackingPopup(title, message, iconClass = "fa-info-circle") {
+    const popup = document.getElementById("trackingPopup");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupMessage = document.getElementById("popupMessage");
+    const popupIcon = document.getElementById("popupIcon");
+
+    popupTitle.textContent = title;
+    popupMessage.textContent = message;
+    popupIcon.className = `fas ${iconClass}`;
+
+    popup.style.display = "flex";
+}
+
+// Close popup when clicking on overlay or close button
+document.querySelectorAll(".popupCloseBtn, #trackingPopup").forEach(el => {
+    el.addEventListener("click", function (e) {
+        if (e.target.classList.contains("popupCloseBtn") || e.target.id === "trackingPopup") {
+            document.getElementById("trackingPopup").style.display = "none";
+        }
+    });
+});

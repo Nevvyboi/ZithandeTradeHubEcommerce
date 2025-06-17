@@ -301,8 +301,8 @@ async function loadOrders() {
           row.innerHTML = `
               <td>#${order.id}</td>
               <td>${new Date(order.createdAt).toLocaleDateString()}</td>
-              <td><span class="status ${order.status === 'cancelled' ? 'cancelled' : 'completed'}">${capitalize(order.status)}</span></td>
-              <td>R${order.total.toFixed(2)}</td>
+              <td><span class="status ${order.status}">${capitalize(order.status)}</span></td>
+              <td>R${order.total}</td>
               <td><a href="#" class="viewOrder" data-order-id="${order.id}">View</a></td>
           `;
           ordersBody.appendChild(row);

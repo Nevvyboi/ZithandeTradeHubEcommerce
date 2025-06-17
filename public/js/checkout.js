@@ -305,3 +305,33 @@ async function createOrder() {
 
     if (!response.ok) throw new Error('Failed to place order');
 }
+
+
+document.querySelectorAll('.paymentMethod input[type="radio"]').forEach((radio) => {
+  radio.addEventListener('change', () => {
+    document.querySelectorAll('.paymentMethod').forEach((el) => el.classList.remove('active'));
+    if (radio.closest('.paymentMethod')) {
+      radio.closest('.paymentMethod').classList.add('active');
+    }
+
+    const selectedLabel = radio.closest('.paymentMethod').querySelector('label span');
+    if (selectedLabel) {
+      document.getElementById('selectedPayment').textContent = selectedLabel.textContent;
+    }
+
+    updatePaymentDetails();
+  });
+});
+
+function updatePaymentDetails() {
+  document.querySelectorAll('.paymentMethod').forEach((method) => {
+    const input = method.querySelector('input[type="radio"]');
+    const details = method.querySelector('.paymentDetails');
+
+    if (input && details) {
+      details.style.display = input.checked ? 'block' : 'none';
+    }
+  });
+}
+
+updatePaymentDetails();

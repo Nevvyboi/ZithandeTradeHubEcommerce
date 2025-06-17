@@ -1,103 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Zithande Trade Hub - E-Commerce Authenticatin Page</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="stylesheet" href="/css/tracking.css">
-    </head>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Zithande Trade Hub - E-Commerce Authenticatin Page</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <link rel="stylesheet" href="/css/tracking.css">
+        </head>
 
-    <!--Header-->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="home.html" class="logo">
-                    <i class="fas fa-shopping-bag"></i>
-                    ZithandeTradeHub
-                </a>
-
-                <ul class="navLinks">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                    
-                <div class="navIcons">
-                    <a href="#" id="wishlistBtn">
-                        <i class="fas fa-heart"></i>
-                        <span class="wishlistCount">0</span>
+        <!--Header-->
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="home.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        ZithandeTradeHub
                     </a>
-                    <a href="#" id="cartBtn">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cartCount">0</span>
-                    </a>
-                    <a href="#" id="profileLink"><i class="fas fa-user"></i></a>
-                    <div class="hamburger">
-                      <i class="fas fa-bars"></i>
-                    </div>
-                </div>
 
-                <!-- Empty Wishlist Popup -->
-                <div id="emptyWishlistPopup" class="popupOverlay">
-                    <div class="popupCard">
-                        <div class="popupIcon">
-                            <i class="fas fa-heart-broken"></i>
+                    <ul class="navLinks">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                        
+                    <div class="navIcons">
+                        <a href="#" id="wishlistBtn">
+                            <i class="fas fa-heart"></i>
+                            <span class="wishlistCount">0</span>
+                        </a>
+                        <a href="#" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cartCount">0</span>
+                        </a>
+                        <a href="#" id="profileLink"><i class="fas fa-user"></i></a>
+                        <div class="hamburger">
+                        <i class="fas fa-bars"></i>
                         </div>
-                        <h3>Oops, Empty Wishlist!</h3>
-                        <p>You haven’t saved any items yet. Start exploring!</p>
-                        <button class="popupCloseBtn">&times;</button>
-                        <button class="popupActionBtn">Browse Products</button>
                     </div>
-                </div>
 
-                <div id="emptyCartPopup" class="popupOverlay">
-                    <div class="popupCard">
-                        <div class="popupIcon">
-                            <i class="fas fa-shopping-basket"></i>
+                    <!-- Empty Wishlist Popup -->
+                    <div id="emptyWishlistPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-heart-broken"></i>
+                            </div>
+                            <h3>Oops, Empty Wishlist!</h3>
+                            <p>You haven’t saved any items yet. Start exploring!</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn">Browse Products</button>
                         </div>
-                        <h3>Your Cart is Empty!</h3>
-                        <p>Looks like you haven’t added anything to your cart yet.</p>
-                        <button class="popupCloseBtn">&times;</button>
-                        <button class="popupActionBtn">Shop Now</button>
                     </div>
-                </div>
 
-                <div id="loginRequiredPopup" class="popupOverlay">
-                    <div class="popupCard">
-                        <div class="popupIcon">
-                            <i class="fas fa-user-lock"></i>
+                    <div id="emptyCartPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-shopping-basket"></i>
+                            </div>
+                            <h3>Your Cart is Empty!</h3>
+                            <p>Looks like you haven’t added anything to your cart yet.</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn">Shop Now</button>
                         </div>
-                        <h3>Login Required</h3>
-                        <p>Please log in to access your cart/wishlist!</p>
-                        <button class="popupCloseBtn">&times;</button>
-                        <button class="popupActionBtn" onclick="window.location.href='auth.html'">Login Now</button>
                     </div>
-                </div>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="heroContent">
-                <h1>Track Your Order</h1>
-                <p>Enter your order number and email address to check the status of your order.</p>
+                    <div id="loginRequiredPopup" class="popupOverlay">
+                        <div class="popupCard">
+                            <div class="popupIcon">
+                                <i class="fas fa-user-lock"></i>
+                            </div>
+                            <h3>Login Required</h3>
+                            <p>Please log in to access your cart/wishlist!</p>
+                            <button class="popupCloseBtn">&times;</button>
+                            <button class="popupActionBtn" onclick="window.location.href='auth.html'">Login Now</button>
+                        </div>
+                    </div>
+                </nav>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <main class="container">
-        <section class="trackOrder">
-            <form class="searchForm">
-                <input type="text" placeholder="Order Number (e.g. ORD-123456)" required>
-                <input type="email" placeholder="Email Address" required>
-                <button type="submit">Track Order </button>
-            </form>
+        <section class="hero">
+            <div class="container">
+                <div class="heroContent">
+                    <h1>Track Your Order</h1>
+                    <p>Enter your order number and email address to check the status of your order.</p>
+                </div>
+            </div>
         </section>
-    </main>
 
+        <main class="container">
+            <section class="trackOrder">
+                <form class="searchForm" id="trackingForm">
+                    <input type="text" id="orderNumber" placeholder="Order Number (e.g. ORD-123456)" required>
+                    <input type="email" id="emailAddress" placeholder="Email Address" required>
+                    <button type="submit">Track Order</button>
+                </form>
+
+                <div id="trackingResult" class="tracking-result" style="margin-top: 20px;"></div>
+            </section>
+        </main>
+
+        <!-- Order Tracking Popup -->
+        <div id="trackingPopup" class="popupOverlay">
+        <div class="popupCard">
+            <i id="popupIcon" class="fas fa-info-circle"></i>
+            <h3 id="popupTitle">Popup Title</h3>
+            <p id="popupMessage">Popup message goes here.</p>
+            <button class="popupCloseBtn">&times;</button>
+        </div>
+        </div>
 
         <!-- Footer -->
         <footer>

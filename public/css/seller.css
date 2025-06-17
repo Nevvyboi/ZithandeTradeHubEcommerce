@@ -204,6 +204,7 @@ header {
     padding: 30px;
     width: 350px;
     text-align: center;
+    align-self: flex-start;
 }
 
 .profileAvatar {
@@ -583,7 +584,7 @@ footer {
   
 .sellerProductsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
 }
 
@@ -597,7 +598,7 @@ footer {
 
 .sellerProductImage img {
     width: 100%;
-    height: 180px;
+    aspect-ratio: 1 / 1;   
     object-fit: cover;
     border-radius: 8px;
 }
@@ -607,7 +608,7 @@ footer {
 }
 
 .deleteProductBtn {
-    background-color: #ff4d4f;  
+    background-color: var(--danger);  
     color: white;
     border: none;
     padding: 8px 16px;
@@ -619,11 +620,32 @@ footer {
 }
 
 .deleteProductBtn:hover {
-    background-color: #e04343;
+    background-color: var(--danger);
     transform: scale(1.05);
 }
 
 .deleteProductBtn:active {
+    transform: scale(0.98);
+}
+
+.updateProductBtn {
+    background-color: var(--success);  
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.updateProductBtn:hover {
+    background-color: var(--success);
+    transform: scale(1.05);
+}
+
+.updateProductBtn:active {
     transform: scale(0.98);
 }
 
@@ -765,4 +787,128 @@ footer {
     .breadCrumbItem {
         font-size: 0.8rem;
     }
+}
+
+#sellerOrders {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+  margin-bottom: 30px;
+}
+
+#sellerOrders h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+#ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#ordersTable th {
+  background-color: #f0f0f0;
+  color: #555;
+  padding: 12px;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
+
+#ordersTable td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+#ordersTable tr:hover {
+  background-color: #f5f5f5;
+}
+
+.statusSelect {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.updateBtn {
+  background-color: var(--primary);
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.updateBtn:hover {
+  background-color: var(--primary-dark);
+}
+
+@media (max-width: 992px) {
+  .sellerProductsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .sellerProductsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.productRating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.productRating i {
+  font-size: 1rem;
+}
+
+.reviewCount {
+  margin-left: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.statusSelect {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+  background: white;
+  appearance: none;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+}
+
+.status-pending {
+  color: var(--primary);
+}
+
+.status-processing {
+  color: var(--warning);
+}
+
+.status-shipped {
+  color: var(--info);
+}
+
+.status-delivered {
+  color: var(--success);
+}
+
+.status-cancelled {
+  color: var(--danger);
 }

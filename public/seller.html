@@ -122,6 +122,58 @@
             </div>
         </div>
 
+        <div class="modalOverlay" id="updateProductModal" style="display:none;">
+            <div class="modalContent" style="max-height: 90vh; overflow-y: auto;">
+                <span class="closeModal" onclick="closeUpdateModal()">&times;</span>
+                <h2>Update Product</h2>
+                <form id="updateProductForm">
+                    <input type="hidden" id="updateProductId">
+                    
+                    <label for="updateProductName">Product Name:</label>
+                    <input type="text" id="updateProductName" required>
+
+                    <label for="updateProductPrice">Price (R):</label>
+                    <input type="number" id="updateProductPrice" required>
+
+                    <label for="updateProductStock">Stock:</label>
+                    <input type="number" id="updateProductStock" required>
+
+                    <label for="updateProductDescription">Description:</label>
+                    <textarea id="updateProductDescription" required rows="5" style="resize: none; max-width: 100%; width: 100%; overflow: auto;"></textarea>
+
+                    <label for="currentProductImage">Current Image:</label>
+                    <img id="currentProductImage" src="" alt="Product Image" style="width: 100%; max-height: 200px; object-fit: contain; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 6px;">
+
+                    <label for="updateProductImage">Product Image:</label>
+                    <input type="file" id="updateProductImage" accept="image/*">
+
+                    <button type="submit" class="btn btnPrimary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="container">
+        <section id="sellerOrders">
+        <h2>All Orders</h2>
+            <table id="ordersTable">
+                <thead>
+                <tr>
+                    <th>Order#</th>
+                    <th>Date/Time</th>
+                    <th>Buyer</th>
+                    <th>Products</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                    <th>Update</th>
+                </tr>
+                </thead>
+                <tbody id="ordersBody">
+                <!-- Orders will be inserted here by JS -->
+                </tbody>
+            </table>
+        </section>
+        </div>
+
         <footer>
             <div class="container">
                 <div class="footerContent">

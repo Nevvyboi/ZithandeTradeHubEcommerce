@@ -416,15 +416,31 @@ header {
     font-weight: 600;
 }
 
-.status.completed {
-    background-color: rgba(0, 184, 148, 0.1);
+.status.delivered {
+    background-color: #d4f8e8;
     color: var(--success);
 }
 
+.status.processing {
+    background-color: #fff8e1;
+    color: var(--warning);
+}
+
+.status.shipped {
+    background-color: #d4f7f8;
+    color: var(--info);
+}
+
+.status.pending {
+    background-color: #d8c8fa;
+    color: var(--primary);
+}
+
 .status.cancelled {
-    background-color: rgba(214, 48, 49, 0.1);
+    background-color: #fdecea;
     color: var(--danger);
 }
+
 
 .viewOrder {
     color: var(--primary);

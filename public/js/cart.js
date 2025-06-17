@@ -165,7 +165,7 @@ function renderCartItems(items) {
                         <h3 class="productTitle">${item.name}</h3>
                     </div>
                 </div>
-                <div class="cartPrice">R${item.price.toFixed(2)}</div>
+                <div class="cartPrice">R${item.price}</div>
                 <div class="cartQuantity">
                     <div class="quantitySelector">
                         <button class="quantityBtn minus"><i class="fas fa-minus"></i></button>
