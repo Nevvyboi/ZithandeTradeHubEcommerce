@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const multer = require('multer');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
@@ -707,10 +707,32 @@ db.connect(err => {
             console.log('Decoded seller email:', sellerEmail);
         
             const sql = `
-                SELECT p.*, u.id AS sellerId
+                SELECT 
+                p.id,
+                p.name,
+                p.price,
+                p.stock,
+                p.categoryId,
+                p.image,
+
+                -- Total sales per product
+                COALESCE(SUM(oi.quantity), 0) AS sales,
+
+                -- Average rating and total reviews from reviews table
+                ROUND(AVG(r.rating)) AS rating,
+                COUNT(r.id) AS totalReviews
+
                 FROM zithandeProducts p
-                JOIN zithandeUsers u ON p.sellerId = u.id
-                WHERE u.email = ?`;
+
+                -- Join with order items to calculate sales
+                LEFT JOIN zithandeOrderItems oi ON oi.productId = p.id
+
+                -- Join with reviews to calculate rating data
+                LEFT JOIN zithandeReviews r ON r.productId = p.id
+
+                GROUP BY p.id, p.name, p.price, p.stock, p.categoryId, p.image;
+                `;
+
         
             pool.query(sql, [sellerEmail], (err, results) => {
                 if (err) {
@@ -729,8 +751,11 @@ db.connect(err => {
                     category: item.categoryId,
                     image: `data:image/jpeg;base64,${item.image?.toString('base64') || ''}`,
                     sales: item.sales || 0,
-                    rating: item.rating || 0
+                    rating: item.rating !== null && item.rating !== undefined ? Math.round(item.rating) : 0,
+                    totalReviews: item.totalReviews !== null && item.totalReviews !== undefined ? item.totalReviews : 0
                 }));
+
+
         
                 res.json(products);
             });
@@ -1169,9 +1194,156 @@ db.connect(err => {
             });
         });
 
+        app.put('/api/products/:id', (req, res) => {
+            const productId = req.params.id;
+            const { name, price, stock, description, image } = req.body;
+
+            let query, params;
+
+            if (image) {
+                const imageBuffer = Buffer.from(image, 'base64');
+                query = `UPDATE zithandeProducts SET name = ?, price = ?, stock = ?, description = ?, image = ? WHERE id = ?`;
+                params = [name, price, stock, description, imageBuffer, productId];
+            } else {
+                query = `UPDATE zithandeProducts SET name = ?, price = ?, stock = ?, description = ? WHERE id = ?`;
+                params = [name, price, stock, description, productId];
+            }
+
+            pool.query(query, params, (err, results) => {
+                if (err) {
+                    console.error('Error updating product:', err);
+                    return res.status(500).json({ message: 'Failed to update product.' });
+                }
+                res.json({ message: 'Product updated successfully.' });
+            });
+        });
+
+        app.get('/api/product-image/:id', (req, res) => {
+            const productId = req.params.id;
+            pool.query('SELECT image FROM zithandeProducts WHERE id = ?', [productId], (err, results) => {
+                if (err || !results.length) {
+                    return res.status(404).send('Image not found');
+                }
+
+                res.setHeader('Content-Type', 'image/jpeg');
+                res.send(results[0].image);
+            });
+        });
+
+        app.get('/api/track-order', (req, res) => {
+            const { orderNumber, email } = req.query;
+
+            if (!orderNumber || !email) {
+                return res.status(400).json({ error: 'Order number and email are required.' });
+            }
+
+            const orderQuery = `
+                SELECT id, status, createdAt 
+                FROM zithandeOrders 
+                WHERE id = ? 
+            `;
+
+            pool.query(orderQuery, [orderNumber], (err, orderResults) => {
+                if (err) {
+                    console.error('Error fetching order:', err);
+                    return res.status(500).json({ error: 'Server error while tracking order.' });
+                }
+
+                if (orderResults.length === 0) {
+                    return res.status(404).json({ error: 'Order not found.' });
+                }
+
+                const order = orderResults[0];
+
+                const itemsQuery = `
+                    SELECT p.name, oi.quantity 
+                    FROM zithandeOrderItems oi 
+                    JOIN zithandeProducts p ON p.id = oi.productId 
+                    WHERE oi.orderId = ?
+                `;
+
+                pool.query(itemsQuery, [order.id], (err, itemsResults) => {
+                    if (err) {
+                        console.error('Error fetching order items:', err);
+                        return res.status(500).json({ error: 'Failed to fetch order items.' });
+                    }
+
+                    res.json({
+                        orderId: orderNumber,
+                        status: order.status,
+                        estimatedDelivery: order.estimatedDelivery,
+                        items: itemsResults
+                    });
+                });
+            });
+        });
+
+        app.get('/seller/orders', async (req, res) => {
+        const sellerEmail = req.cookies.userEmail || req.cookies.email; 
+        console.log("Seller email in /seller/orders route:", sellerEmail);
+
+
+        try {
+            /* 
+            ──────────────────────────────────────────────
+            We join the tables like this:
+
+            zithandeOrders       -> o   (overall order: id, total, status …)
+            zithandeOrderItems   -> oi  (line-items inside each order)
+            zithandeProducts     -> p   (to find which seller owns the product)
+            zithandeUsers        -> s   (seller user      – to filter by email)
+            zithandeUsers        -> b   (buyer  user      – to show buyer name)
+
+            Only orders whose line-items reference products
+            that belong to the *current* seller are returned.
+            ──────────────────────────────────────────────
+            */
+            const [rows] = await pool.promise().query(
+            `
+                SELECT 
+                o.id            AS orderId,
+                DATE_FORMAT(o.createdAt,'%Y-%m-%d %H:%i') AS orderDate,
+                o.status,
+                o.total         AS orderTotal,       -- full order total
+                
+                oi.productId,
+                p.name          AS productName,
+                oi.quantity,
+                oi.price,                           -- unit price captured at checkout
+                
+                b.fullName      AS buyerName
+                FROM zithandeOrders       AS o
+                JOIN zithandeOrderItems   AS oi ON oi.orderId = o.id
+                JOIN zithandeProducts     AS p  ON p.id      = oi.productId
+                JOIN zithandeUsers        AS s  ON s.id      = p.sellerId          -- seller
+                JOIN zithandeUsers        AS b  ON b.id      = o.userId            -- buyer
+                WHERE s.email = ?
+                ORDER BY o.createdAt DESC
+            `,
+            [sellerEmail]
+            );
+
+            res.json(rows); 
+        } catch (err) {
+            console.error('❌  Failed to fetch seller orders:', err);
+            res.status(500).send('Failed to fetch orders');
+        }
+        });
+
+        app.put('/seller/orders/:id', async (req, res) => {
+            const orderId = req.params.id;
+            const { status } = req.body;
+            try {
+                await pool.promise().query("UPDATE zithandeOrders SET status = ? WHERE id = ?", [status, orderId]);
+                res.sendStatus(200);
+            } catch (err) {
+                res.status(500).send("Failed to update order");
+            }
+        });
+
         app.use(express.static(path.join(__dirname, "../public")));
 
-        app.listen(3000, '0.0.0.0', () => {
+        app.listen(3000, () => {
             console.log('Server running on http://0.0.0.0:3000');
         });;
     });
