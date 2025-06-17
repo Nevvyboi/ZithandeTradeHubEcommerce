@@ -411,19 +411,29 @@ header {
 }
 
 /* Status colors */
-.status.completed {
+.status.delivered {
     background-color: #d4f8e8;
-    color: #34a853;
+    color: var(--success);
+}
+
+.status.processing {
+    background-color: #fff8e1;
+    color: var(--warning);
+}
+
+.status.shipped {
+    background-color: #d4f7f8;
+    color: var(--info);
 }
 
 .status.pending {
-    background-color: #fff8e1;
-    color: #f9a825;
+    background-color: #d8c8fa;
+    color: var(--primary);
 }
 
 .status.cancelled {
     background-color: #fdecea;
-    color: #e53935;
+    color: var(--danger);
 }
 
 #noOrdersMessage {
@@ -673,4 +683,34 @@ button.deleteOrderBtn:hover {
         padding: 6px 10px;
         font-size: 0.8rem;
     }
+}
+
+.backToShop {
+    position: relative;
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+}
+  
+.backToShop::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: var(--danger);
+    transition: width 0.3s ease;
+}
+  
+.backToShop:hover {
+    color: var(--danger);
+}
+  
+.backToShop:hover::after {
+    width: 100%;
+}
+
+.backToShop i {
+    margin-right: 5px;
 }

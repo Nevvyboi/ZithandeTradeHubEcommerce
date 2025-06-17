@@ -90,6 +90,9 @@ let cartProductIds = [];
 let userEmail = getCookie("userEmail") || "guest@example.com";
 
 function loadProducts(products, userEmail, wishlistProductIds, cartProductIds) {
+    wishlistProductIds = Array.isArray(wishlistProductIds) ? wishlistProductIds : [];
+    cartProductIds = Array.isArray(cartProductIds) ? cartProductIds : [];
+
     const container = document.querySelector('.productsGrid');
     container.innerHTML = '';
 
@@ -196,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("sort").addEventListener("change", function() {
         const selectedSort = this.value;
         let sortedProducts = [...allProducts];
-
+        console.log(sortedProducts);
         if (selectedSort === "price-low") {
             sortedProducts.sort((a, b) => a.price - b.price);
         } else if (selectedSort === "price-high") {

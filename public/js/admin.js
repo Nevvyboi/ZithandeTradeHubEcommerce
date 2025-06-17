@@ -71,7 +71,7 @@ async function loadAdminOrders() {
                     <td>${order.customerName}</td>
                     <td>${new Date(order.createdAt).toLocaleDateString()}</td>
                     <td><span class="status ${order.status.toLowerCase()}">${order.status}</span></td>
-                    <td>R${order.total.toFixed(2)}</td>
+                    <td>R${order.total}</td>
                     <td><button class="deleteOrderBtn" data-id="${order.id}">Delete</button></td>
                 `;
                 adminOrdersBody.appendChild(row);
@@ -237,3 +237,21 @@ async function deleteReview(id) {
         console.error('Error deleting review:', err);
     }
 }
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
+const isLoggedIn = getCookie("isAdmin");
+
+if (!isLoggedIn || isLoggedIn !== "true") {
+    window.location.href = "auth.html";
+}
+
+document.getElementById('logoutBtn')?.addEventListener('click', function () {
+    document.cookie = "isAdmin=; path=/; max-age=0";
+    window.location.href = "auth.html";
+});

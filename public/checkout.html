@@ -211,7 +211,7 @@
                         
                                 <div class="summaryRow">
                                     <span>Payment Method</span>
-                                    <span class="paymentMethod">Credit Card</span>
+                                    <span class="paymentMethod" id="selectedPayment">Credit Card</span>
                                 </div>
                         
                                 <div class="summaryRow total">
@@ -225,63 +225,64 @@
                     <div class="checkoutPayment" style="flex: 1;">
                         <div class="paymentContainer">
                             <div class="paymentMethods">
-        
+
                                 <div class="paymentMethod active">
-                                    <input type="radio" name="payment" id="credit-card" checked>
-                                    <label for="credit-card">
-                                        <i class="far fa-credit-card"></i>
-                                        <span>Credit Card</span>
-                                    </label>
-                                    <div class="paymentDetails">
-                                        <div class="formGroup">
-                                            <label for="card-number">Card Number</label>
-                                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
-                                        </div>
-                                        <div class="formGroup">
-                                            <label for="card-name">Name on Card</label>
-                                            <input type="text" id="card-name" placeholder="John Doe">
-                                        </div>
-                                        <div class="formRow">
-                                            <div class="formGroup">
-                                                <label for="card-expiry">Expiry Date</label>
-                                                <input type="text" id="card-expiry" placeholder="MM/YY">
-                                            </div>
-                                            <div class="formGroup">
-                                                <label for="card-cvv">CVV</label>
-                                                <input type="text" id="card-cvv" placeholder="123">
-                                            </div>
-                                        </div>
+                                <input type="radio" name="payment" id="credit-card" checked>
+                                <label for="credit-card">
+                                    <i class="far fa-credit-card"></i>
+                                    <span>Credit Card</span>
+                                </label>
+                                <div class="paymentDetails">
+                                    <div class="formGroup">
+                                    <label for="card-number">Card Number</label>
+                                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                                    </div>
+                                    <div class="formGroup">
+                                    <label for="card-name">Name on Card</label>
+                                    <input type="text" id="card-name" placeholder="John Doe">
+                                    </div>
+                                    <div class="formRow">
+                                    <div class="formGroup">
+                                        <label for="card-expiry">Expiry Date</label>
+                                        <input type="text" id="card-expiry" placeholder="MM/YY">
+                                    </div>
+                                    <div class="formGroup">
+                                        <label for="card-cvv">CVV</label>
+                                        <input type="text" id="card-cvv" placeholder="123">
+                                    </div>
                                     </div>
                                 </div>
-        
+                                </div>
+
                                 <div class="paymentMethod">
-                                    <input type="radio" name="payment" id="paypal">
-                                    <label for="paypal">
-                                        <i class="fab fa-paypal"></i>
-                                        <span>PayPal</span>
-                                    </label>
-                                    <div class="paymentDetails">
-                                        <p>You will be redirected to PayPal website to complete your payment securely.</p>
-                                    </div>
+                                <input type="radio" name="payment" id="paypal">
+                                <label for="paypal">
+                                    <i class="fab fa-paypal"></i>
+                                    <span>PayPal</span>
+                                </label>
+                                <div class="paymentDetails">
+                                    <p>You will be redirected to PayPal website to complete your payment securely.</p>
                                 </div>
-        
+                                </div>
+
                                 <div class="paymentMethod">
-                                    <input type="radio" name="payment" id="bank-transfer">
-                                    <label for="bank-transfer">
-                                        <i class="fas fa-university"></i>
-                                        <span>Direct Bank Transfer</span>
-                                    </label>
-                                    <div class="paymentDetails">
-                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
-                                    </div>
+                                <input type="radio" name="payment" id="bank-transfer">
+                                <label for="bank-transfer">
+                                    <i class="fas fa-university"></i>
+                                    <span>Direct Bank Transfer</span>
+                                </label>
+                                <div class="paymentDetails">
+                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
                                 </div>
+                                </div>
+
                             </div>
-        
+
                             <div class="termsCheckbox">
                                 <input type="checkbox" id="terms" required>
                                 <label for="terms">I have read and agree to the website <a href="info.html">terms and conditions</a></label>
                             </div>
-        
+
                             <button class="btn btnPrimary placeOrder">Place Order</button>
                         </div>
                     </div>

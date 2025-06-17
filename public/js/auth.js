@@ -120,8 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const password = document.getElementById('loginPassword').value.trim();
 
     if (email === "zithande@admin.com" && password === "123") {
-        window.location.href = "admin.html";
-        return;
+      document.cookie = "isAdmin=true; path=/";
+      window.location.href = "admin.html";
+      return;
     }
 
     fetch('/login', {

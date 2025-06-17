@@ -485,8 +485,22 @@ footer {
 
 .checkoutColumns {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
     align-items: flex-start;
+}
+.checkoutBilling,
+.checkoutSummary,
+.checkoutPayment {
+    flex: 1 1 100%;
+}
+
+@media(min-width: 992px) {
+    .checkoutBilling,
+    .checkoutSummary,
+    .checkoutPayment {
+        flex: 1;
+    }
 }
 
 .billingForm {
@@ -597,77 +611,6 @@ footer {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.paymentMethod {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    overflow: hidden;
-}
-
-.paymentMethod input {
-    display: none;
-}
-
-.paymentMethod label {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    cursor: pointer;
-    background-color: #f9f9f9;
-}
-
-.paymentMethod.active {
-    border-color: var(--primary);
-}
-
-.paymentMethod label i {
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-.paymentDetails {
-    padding: 15px;
-    background: #fafafa;
-}
-
-.paymentDetails .formGroup {
-    margin-bottom: 15px;
-}
-
-.paymentDetails .formRow {
-    display: flex;
-    gap: 15px;
-}
-
-.termsCheckbox {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.placeOrder {
-    width: 100%;
-    margin-top: 20px;
-}
-
-@media(max-width: 992px) {
-    .checkout-columns {
-        flex-direction: column;
-    }
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 992px) {
-    .checkoutColumns {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .orderSummary {
-        order: -1;
-    }
 }
 
 @media (max-width: 768px) {
@@ -790,4 +733,88 @@ footer {
         padding: 8px 16px;
         font-size: 0.9rem;
     }
+}
+
+.checkoutColumns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.checkoutBilling,
+.checkoutSummary,
+.checkoutPayment {
+  flex: 1 1 100%;
+}
+
+@media(min-width: 992px) {
+  .checkoutBilling,
+  .checkoutSummary,
+  .checkoutPayment {
+    flex: 1;
+  }
+}
+
+.paymentMethod {
+  border: 2px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.paymentMethod label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.paymentMethod input[type="radio"] {
+  margin-right: 10px;
+}
+
+.paymentMethod.active {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.paymentMethod.active > label {
+  background-color: #f5f3ff;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.paymentDetails {
+  margin-top: 10px;
+  background-color: white;
+}
+
+.paymentDetails input {
+  display: block;
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.expiryCvv {
+  display: flex;
+  gap: 10px;
+}
+
+.placeOrder {
+  margin-top: 15px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  width: 100%;
+  font-size: 16px;
 }
