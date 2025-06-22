@@ -35,9 +35,9 @@ It offers fully featured dashboards for both buyers and sellers.
 | Seller    | Product Management, Sales, Revenue |
 | Guest     | Redirected to login page |
 
-![image](https://github.com/user-attachments/assets/428d189b-dd48-4578-850a-0885d1157468)
+![image](https://github.com/user-attachments/assets/d2d9d1f2-38da-4b6e-bf83-8805989ac2cd)
 
-![image](https://github.com/user-attachments/assets/6715b44a-29bd-42cb-be29-17c001be125e)
+![image](https://github.com/user-attachments/assets/bbb29042-ae2f-458c-a150-3a7786239f4c)
 
 ---
 
