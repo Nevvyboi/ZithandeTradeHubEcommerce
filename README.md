@@ -53,11 +53,17 @@ product and review, with the numbers rolled up on one screen.
 
 ## 🎥 Demo
 
+<p align="center"><img src="docs/screenshots/01-home.png" alt="ZithandeTradeHub home page" width="100%" /></p>
+
 https://github.com/user-attachments/assets/322279d4-76c2-4fbe-879f-17d1e7b6b780
 
 ---
 
 ## 🎬 Feature Tour
+
+> 📸 Every screenshot below is the app running locally against MySQL with a seeded demo
+> catalogue. The product artwork is deliberately generic placeholder tiles, marked
+> **demo listing**, rather than real product photography.
 
 ### 👤 Accounts and roles
 
@@ -75,6 +81,18 @@ cookie backed, and the dashboard you land on depends on the role on your account
 | 📦 **Tracking** | Order status moves through pending → processing → shipped → delivered |
 | ⭐ **Reviews** | Rate and review a product you have bought |
 
+**🛍️ The shop.** Category filters, sorting, and a grid or list toggle, with live wishlist and cart
+counters in the header.
+
+<p align="center"><img src="docs/screenshots/02-shop.png" alt="Shop page with filters and sorting" width="100%" /></p>
+
+<table>
+<tr>
+<td width="50%"><strong>🔍 Product detail</strong><br/>Full description, stock, star rating and every review left on it.<br/><img src="docs/screenshots/03-product.png" alt="Product detail page" /></td>
+<td width="50%"><strong>🛒 Cart</strong><br/>Quantities, line removal and a running total before checkout.<br/><img src="docs/screenshots/04-cart.png" alt="Cart page" /></td>
+</tr>
+</table>
+
 ### 🧑‍💼 Selling
 
 | | |
@@ -84,10 +102,16 @@ cookie backed, and the dashboard you land on depends on the role on your account
 | ❌ **Duplicate guard** | `/api/checkProductName/:name` blocks a name you already used |
 | 📦 **My listings** | Every product you have published, with prices and order counts |
 
+<p align="center"><img src="docs/screenshots/05-seller-dashboard.png" alt="Seller dashboard" width="100%" /></p>
+
+<p align="center"><img src="docs/screenshots/06-add-product.png" alt="Add product page with image preview" width="100%" /></p>
+
 ### 🛠️ Administration
 
 The admin console reads platform wide stats and can manage **accounts, orders, products and
 reviews**, each with its own list and delete endpoint.
+
+<p align="center"><img src="docs/screenshots/07-admin-console.png" alt="Admin console" width="100%" /></p>
 
 ---
 

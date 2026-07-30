@@ -724,11 +724,18 @@ db.connect(err => {
 
                 FROM zithandeProducts p
 
+                -- Scope to the seller who owns the product. Without this the
+                -- dashboard listed every product on the platform and offered
+                -- Update and Delete on all of them.
+                JOIN zithandeUsers u ON u.id = p.sellerId
+
                 -- Join with order items to calculate sales
                 LEFT JOIN zithandeOrderItems oi ON oi.productId = p.id
 
                 -- Join with reviews to calculate rating data
                 LEFT JOIN zithandeReviews r ON r.productId = p.id
+
+                WHERE u.email = ?
 
                 GROUP BY p.id, p.name, p.price, p.stock, p.categoryId, p.image;
                 `;
