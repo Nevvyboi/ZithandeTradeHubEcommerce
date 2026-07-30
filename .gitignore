@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# secrets
+.env
+*.local
+
+# logs
+*.log
+npm-debug.log*
+
+# uploaded product images at runtime
+public/uploads/
+
+# os cruft
+.DS_Store
+Thumbs.db
+
+# editor bits
+.vscode/
+.idea/
