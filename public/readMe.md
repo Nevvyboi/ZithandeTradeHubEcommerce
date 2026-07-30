@@ -1,4 +1,4 @@
-# 📦 ZithandeTradeHub – README 🛒
+# 📦 ZithandeTradeHub - README 🛒
 
 Welcome to **ZithandeTradeHub**, a user-friendly, secure C2C e-commerce platform designed to connect buyers and sellers across South Africa.
 

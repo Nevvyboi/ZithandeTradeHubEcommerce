@@ -1298,8 +1298,8 @@ db.connect(err => {
             zithandeOrders       -> o   (overall order: id, total, status …)
             zithandeOrderItems   -> oi  (line-items inside each order)
             zithandeProducts     -> p   (to find which seller owns the product)
-            zithandeUsers        -> s   (seller user      – to filter by email)
-            zithandeUsers        -> b   (buyer  user      – to show buyer name)
+            zithandeUsers        -> s   (seller user - to filter by email)
+            zithandeUsers        -> b   (buyer  user - to show buyer name)
 
             Only orders whose line-items reference products
             that belong to the *current* seller are returned.
